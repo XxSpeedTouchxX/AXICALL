@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MonEstimationAuto
 
-## Getting Started
+Site de génération de leads pour Axicall : estimation, rachat et mise en relation autour des véhicules d'occasion. Le cœur du site est un simulateur d'estimation en 4 étapes qui transforme les visiteurs en leads qualifiés et scorés (chaud / tiède / froid).
 
-First, run the development server:
+Stack : Next.js 16 (App Router), TypeScript, Tailwind CSS, React, Zod, Vitest.
+
+## Installation locale
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Le site est disponible sur [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tests
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm test
+```
 
-## Learn More
+Lance la suite Vitest (unitaire + composants). `npm run build` vérifie en plus le typage TypeScript et la compilation de production.
 
-To learn more about Next.js, take a look at the following resources:
+## Déploiement sur Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Poussez le dépôt sur GitHub.
+2. Sur [vercel.com](https://vercel.com), importez le dépôt — Next.js est détecté automatiquement, aucune configuration de build n'est nécessaire.
+3. Déployez.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Domaine personnalisé
 
-## Deploy on Vercel
+Dans les paramètres du projet Vercel → **Domains**, ajoutez votre nom de domaine et suivez les instructions DNS fournies par Vercel.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Variables d'environnement
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Voir [`.env.example`](.env.example). Aucune variable n'est requise pour faire fonctionner le site tel quel (le stockage des leads se fait dans un fichier JSON local). Les variables présentes sont réservées aux intégrations futures décrites ci-dessous.
+
+## Brancher Supabase plus tard
+
+Toute la persistance des leads passe par une seule fonction : `saveLead()` (et `getAllLeads()`) dans [`lib/leads.ts`](lib/leads.ts). Aucun autre fichier ne connaît le détail du stockage. Pour brancher Supabase :
+
+1. Créez un projet Supabase et une table `leads`.
+2. Ajoutez `NEXT_PUBLIC_SUPABASE_URL` et `SUPABASE_SERVICE_ROLE_KEY` dans `.env.local` (voir `.env.example`).
+3. Remplacez le corps de `saveLead()`/`getAllLeads()` dans `lib/leads.ts` par des appels au client Supabase — aucun appelant (l'API route, les formulaires) n'a besoin d'être modifié.
+
+## Brancher un CRM
+
+Même principe : le point d'entrée unique est `lib/leads.ts`. Un webhook vers un CRM (HubSpot, Pipedrive, etc.) ou vers Make/Zapier peut être ajouté dans `saveLead()` après la persistance, ou en remplacement de celle-ci.
+
+## Checklist avant mise en production
+
+- [ ] Remplacer le numéro de téléphone, l'email et les horaires placeholders dans [`components/layout/Footer.tsx`](components/layout/Footer.tsx), [`components/layout/CallBar.tsx`](components/layout/CallBar.tsx) et [`app/contact/page.tsx`](app/contact/page.tsx).
+- [ ] Remplacer l'image placeholder [`public/hero-car.jpg`](public/hero-car.jpg) par une photo automobile réelle et sous licence (ratio 16:9 recommandé, pour correspondre au conteneur `aspect-video` du hero).
+- [ ] Mettre à jour `BASE_URL` dans [`app/sitemap.ts`](app/sitemap.ts), [`app/robots.ts`](app/robots.ts) et `metadataBase` dans [`app/layout.tsx`](app/layout.tsx) avec le nom de domaine réel une fois connu.
+- [ ] Remplacer les témoignages fictifs dans [`components/sections/Testimonials.tsx`](components/sections/Testimonials.tsx) par de vrais avis clients (ou les marquer clairement comme illustratifs).
+- [ ] Brancher Supabase et/ou un CRM si un stockage au-delà du fichier JSON local est nécessaire (voir sections ci-dessus).
