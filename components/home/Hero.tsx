@@ -19,9 +19,7 @@ export function Hero() {
               <Button>Estimer mon véhicule</Button>
             </Link>
             <Link href="/contact">
-              <Button variant="outline" className="border-white text-white hover:bg-white/10">
-                Être rappelé
-              </Button>
+              <Button variant="outline-inverse">Être rappelé</Button>
             </Link>
           </div>
         </div>
