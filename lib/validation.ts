@@ -15,15 +15,19 @@ export const vehicleInfoSchema = z.object({
   kilometrage: z.number().int().min(0, "Le kilométrage ne peut pas être négatif"),
   carburant: z.enum(["essence", "diesel", "hybride", "electrique"]),
   boite: z.enum(["manuelle", "automatique"]),
-  puissanceFiscale: z.number().int().min(1),
-  nombrePortes: z.number().int().min(2).max(5),
+  puissanceFiscale: z.number().int().min(1, "Puissance fiscale invalide"),
+  nombrePortes: z
+    .number()
+    .int()
+    .min(2, "Nombre de portes invalide")
+    .max(5, "Nombre de portes invalide"),
 });
 
 export const vehicleConditionSchema = z.object({
   etatGeneral: z.enum(["excellent", "tres_bon", "correct", "a_prevoir"]),
   accident: z.boolean(),
   controleTechnique: z.enum(["valide", "expire", "non_effectue"]),
-  nombreProprietaires: z.number().int().min(1),
+  nombreProprietaires: z.number().int().min(1, "Nombre de propriétaires invalide"),
   carnetEntretien: z.boolean(),
 });
 

@@ -122,6 +122,67 @@ describe("contactInfoSchema", () => {
   });
 });
 
+describe("vehicleConditionSchema", () => {
+  it("accepts a valid condition", () => {
+    const result = vehicleConditionSchema.safeParse({
+      etatGeneral: "tres_bon",
+      accident: false,
+      controleTechnique: "valide",
+      nombreProprietaires: 1,
+      carnetEntretien: true,
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects an invalid etatGeneral value", () => {
+    const result = vehicleConditionSchema.safeParse({
+      etatGeneral: "impeccable",
+      accident: false,
+      controleTechnique: "valide",
+      nombreProprietaires: 1,
+      carnetEntretien: true,
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects an invalid controleTechnique value", () => {
+    const result = vehicleConditionSchema.safeParse({
+      etatGeneral: "tres_bon",
+      accident: false,
+      controleTechnique: "inconnu",
+      nombreProprietaires: 1,
+      carnetEntretien: true,
+    });
+    expect(result.success).toBe(false);
+  });
+});
+
+describe("sellerSituationSchema", () => {
+  it("accepts a valid situation", () => {
+    const result = sellerSituationSchema.safeParse({
+      motifVente: "changement_vehicule",
+      delaiVente: "sous_1_mois",
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects an invalid motifVente value", () => {
+    const result = sellerSituationSchema.safeParse({
+      motifVente: "autre_raison",
+      delaiVente: "sous_1_mois",
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects an invalid delaiVente value", () => {
+    const result = sellerSituationSchema.safeParse({
+      motifVente: "changement_vehicule",
+      delaiVente: "quand_possible",
+    });
+    expect(result.success).toBe(false);
+  });
+});
+
 describe("estimationFormSchema", () => {
   it("composes all four step schemas", () => {
     const result = estimationFormSchema.safeParse({
