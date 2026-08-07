@@ -1,6 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { Lead } from "@/types/lead";
+import type { ContactLead, EstimationLead, Lead } from "@/types/lead";
+
+type NewLead =
+  | Omit<EstimationLead, "id" | "createdAt" | "statut">
+  | Omit<ContactLead, "id" | "createdAt" | "statut">;
 
 const DATA_FILE = path.join(process.cwd(), "data", "leads.json");
 
@@ -25,7 +29,7 @@ function writeLeads(leads: Lead[]): void {
  * Single seam for lead persistence. Swap the body of this function for a
  * Supabase insert (or any other backend) without changing any caller.
  */
-export async function saveLead(lead: Omit<Lead, "id" | "createdAt" | "statut">): Promise<Lead> {
+export async function saveLead(lead: NewLead): Promise<Lead> {
   const fullLead = {
     ...lead,
     id: crypto.randomUUID(),
