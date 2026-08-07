@@ -6,7 +6,7 @@ const STEPS = [
 ];
 
 export function HowItWorks({ preview = false }: { preview?: boolean }) {
-  const steps = preview ? STEPS.slice(0, 4) : STEPS;
+  const steps = preview ? STEPS.slice(0, 3) : STEPS;
   return (
     <section className="px-4 py-16">
       <h2 className="mb-10 text-center text-2xl font-bold text-[var(--color-navy)]">

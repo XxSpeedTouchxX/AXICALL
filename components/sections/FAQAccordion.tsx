@@ -18,12 +18,14 @@ export function FAQAccordion() {
         <div key={faq.q} className="rounded-lg border border-[var(--color-gray-200)]">
           <button
             onClick={() => setOpenIndex(openIndex === i ? null : i)}
+            aria-expanded={openIndex === i}
+            aria-controls={`faq-panel-${i}`}
             className="w-full px-5 py-4 text-left font-medium text-[var(--color-navy)]"
           >
             {faq.q}
           </button>
           {openIndex === i && (
-            <p className="px-5 pb-4 text-[var(--color-gray-600)]">{faq.a}</p>
+            <p id={`faq-panel-${i}`} className="px-5 pb-4 text-[var(--color-gray-600)]">{faq.a}</p>
           )}
         </div>
       ))}
