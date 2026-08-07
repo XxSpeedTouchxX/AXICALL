@@ -31,4 +31,19 @@ describe("ExitIntentPopup", () => {
     });
     expect(screen.queryByText(/avant de partir/i)).not.toBeInTheDocument();
   });
+
+  it("dismisses when Escape is pressed", () => {
+    render(<ExitIntentPopup />);
+    act(() => {
+      const evt = new MouseEvent("mouseout", { clientY: -10 });
+      document.dispatchEvent(evt);
+    });
+    expect(screen.getByText(/avant de partir/i)).toBeInTheDocument();
+
+    act(() => {
+      const evt = new KeyboardEvent("keydown", { key: "Escape" });
+      document.dispatchEvent(evt);
+    });
+    expect(screen.queryByText(/avant de partir/i)).not.toBeInTheDocument();
+  });
 });
