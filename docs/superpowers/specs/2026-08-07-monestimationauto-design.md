@@ -78,21 +78,28 @@ Nom, prénom, téléphone, email, ville, code postal, case de consentement oblig
 
 1. À l'étape 4, POST vers `app/api/leads/route.ts` avec l'objet complet.
 2. L'API revalide tout avec Zod côté serveur (jamais confiance au client seul).
-3. Calcul du score via `scoreLead()` (`lib/scoring.ts`) — fonction pure et testable :
-   - + si vente "Urgent" ou "Sous 1 mois"
-   - + si véhicule récent (< 8 ans) et kilométrage raisonnable (< 120 000 km)
-   - + si téléphone valide (format FR)
-   - + si état "Excellent"/"Très bon" et contrôle technique valide
-   - Seuils → `chaud` / `tiede` / `froid`
-4. Persistance via `lib/leads.ts::saveLead()` — implémentation actuelle : append dans `data/leads.json`. Cette fonction est le seul point de contact avec le stockage, pour permettre un remplacement par Supabase sans toucher au reste du code.
-5. Réponse `{ id, score, urgence }`, le client redirige vers `/estimation/merci?id=...`.
-6. La page de résultat affiche : confirmation, résumé du véhicule, message personnalisé selon le score, CTA "Être rappelé maintenant".
+3. Calcul du score via `scoreLead()` (`lib/scoring.ts`) — fonction pure et testable, système de points :
+   - +30 points si date de vente "Urgent"
+   - +15 points si date de vente "Sous 1 mois"
+   - +20 points si véhicule récent (année ≥ année courante − 8) ET kilométrage < 120 000 km (10 points si un seul des deux critères)
+   - +15 points si téléphone valide (format FR : `0[1-9]\d{8}` après nettoyage des espaces)
+   - +15 points si état général "Excellent" ou "Très bon" ET contrôle technique "Valide"
+   - +5 points si aucun accident déclaré
+   - Total sur 100 points. Seuils : `chaud` ≥ 60, `tiede` 30–59, `froid` < 30.
+4. Génération de l'`id` du lead via `crypto.randomUUID()`.
+5. Persistance via `lib/leads.ts::saveLead()` — implémentation actuelle : append dans `data/leads.json`. Cette fonction est le seul point de contact avec le stockage, pour permettre un remplacement par Supabase sans toucher au reste du code.
+6. Réponse de l'API : `{ id, score, urgence }` (le score numérique et l'urgence `chaud/tiede/froid`).
+7. Avant l'appel API, le client a déjà les données complètes du formulaire (véhicule + situation) dans l'état de `useEstimationForm` / sessionStorage. Après une réponse API réussie, le client stocke `{ id, score, urgence, vehicule: {...} }` dans sessionStorage sous une clé dédiée (ex: `estimation-result`), puis redirige vers `/estimation/merci`. La page de résultat lit cette clé sessionStorage pour afficher le résumé du véhicule et le message personnalisé — pas de round-trip serveur supplémentaire, pas de `GET /api/leads/[id]` nécessaire pour cette version. Si la clé est absente (accès direct à l'URL), la page affiche un message générique invitant à refaire une estimation.
+8. La page affiche : confirmation, résumé du véhicule, message personnalisé selon le score, CTA "Être rappelé maintenant".
 
 ### Modèle de lead (`types/lead.ts`)
-Date de création, infos véhicule (marque, modèle, année, kilométrage, carburant), infos prospect (nom, téléphone, email, ville), qualification (score, urgence, statut).
-Statuts : `Nouveau | À rappeler | Contacté | Rendez-vous pris | Vendu | Perdu` (le lead est créé avec le statut `Nouveau` ; pas d'UI back-office dans cette version, mais la donnée est structurée pour en brancher une plus tard).
+Type discriminé par un champ `type` :
+- `EstimationLead` (`type: 'estimation'`) : date de création, infos véhicule (marque, modèle, année, kilométrage, carburant), infos prospect (nom, téléphone, email, ville), qualification (score, urgence, statut).
+- `ContactLead` (`type: 'contact'`) : date de création, infos prospect (nom, email, téléphone, message), sans infos véhicule ni score/urgence (statut uniquement, initialisé à `Nouveau`).
 
-Le formulaire de contact (page Contact) réutilise `saveLead()` avec un type `contact` distinct du type `estimation`.
+Statuts (les deux types) : `Nouveau | À rappeler | Contacté | Rendez-vous pris | Vendu | Perdu` (créé à `Nouveau` ; pas d'UI back-office dans cette version, mais la donnée est structurée pour en brancher une plus tard).
+
+Le formulaire de contact (page Contact) réutilise `saveLead()` avec un `ContactLead`.
 
 ## Pages marketing
 
@@ -105,7 +112,7 @@ Le formulaire de contact (page Contact) réutilise `saveLead()` avec un type `co
 ## Éléments de conversion transverses
 
 - `CallBar` : barre d'appel fixe en bas d'écran sur mobile uniquement (lien `tel:` placeholder).
-- `ExitIntentPopup` : déclenché sur intention de sortie desktop (mouse leave viewport top) ou après ~30s d'inactivité sur mobile ; dismiss persisté en sessionStorage pour ne pas re-spammer un même visiteur.
+- `ExitIntentPopup` : déclenché sur intention de sortie desktop (mouse leave viewport top) ou après 30s sans interaction sur mobile (le timer est réinitialisé par tout `touchstart`, `scroll` ou `click` ; il se déclenche si aucun de ces événements ne survient pendant 30s) ; dismiss persisté en sessionStorage pour ne pas re-spammer un même visiteur.
 - CTA présent après chaque section significative des pages marketing.
 
 ## SEO
