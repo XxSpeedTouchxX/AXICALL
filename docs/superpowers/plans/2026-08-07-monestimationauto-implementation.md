@@ -1133,12 +1133,12 @@ describe("Button", () => {
 
   it("applies the orange variant class by default", () => {
     render(<Button>CTA</Button>);
-    expect(screen.getByRole("button")).toHaveClass("bg-[--color-orange]");
+    expect(screen.getByRole("button")).toHaveClass("bg-[var(--color-orange)]");
   });
 
   it("applies the outline variant class when specified", () => {
     render(<Button variant="outline">Secondaire</Button>);
-    expect(screen.getByRole("button")).not.toHaveClass("bg-[--color-orange]");
+    expect(screen.getByRole("button")).not.toHaveClass("bg-[var(--color-orange)]");
   });
 });
 ```
@@ -1160,9 +1160,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantClasses: Record<Variant, string> = {
-  orange: "bg-[--color-orange] hover:bg-[--color-orange-dark] text-white",
-  navy: "bg-[--color-navy] hover:bg-[--color-navy-light] text-white",
-  outline: "border border-[--color-navy] text-[--color-navy] hover:bg-[--color-gray-50]",
+  orange: "bg-[var(--color-orange)] hover:bg-[var(--color-orange-dark)] text-white",
+  navy: "bg-[var(--color-navy)] hover:bg-[var(--color-navy-light)] text-white",
+  outline: "border border-[var(--color-navy)] text-[var(--color-navy)] hover:bg-[var(--color-gray-50)]",
 };
 
 export function Button({ variant = "orange", className = "", ...props }: ButtonProps) {
@@ -1194,12 +1194,12 @@ export function Input({ label, error, id, className = "", ...props }: InputProps
   const inputId = id ?? props.name;
   return (
     <div className="flex flex-col gap-1">
-      <label htmlFor={inputId} className="text-sm font-medium text-[--color-navy]">
+      <label htmlFor={inputId} className="text-sm font-medium text-[var(--color-navy)]">
         {label}
       </label>
       <input
         id={inputId}
-        className={`rounded-md border border-[--color-gray-200] px-3 py-2 focus:border-[--color-orange] focus:outline-none ${className}`}
+        className={`rounded-md border border-[var(--color-gray-200)] px-3 py-2 focus:border-[var(--color-orange)] focus:outline-none ${className}`}
         {...props}
       />
       {error && <span className="text-sm text-red-600">{error}</span>}
@@ -1228,13 +1228,13 @@ export function Select({ label, options, error, id, name, className = "", ...pro
   const selectId = id ?? name;
   return (
     <div className="flex flex-col gap-1">
-      <label htmlFor={selectId} className="text-sm font-medium text-[--color-navy]">
+      <label htmlFor={selectId} className="text-sm font-medium text-[var(--color-navy)]">
         {label}
       </label>
       <select
         id={selectId}
         name={name}
-        className={`rounded-md border border-[--color-gray-200] px-3 py-2 focus:border-[--color-orange] focus:outline-none ${className}`}
+        className={`rounded-md border border-[var(--color-gray-200)] px-3 py-2 focus:border-[var(--color-orange)] focus:outline-none ${className}`}
         {...props}
       >
         <option value="">Sélectionner...</option>
@@ -1266,8 +1266,8 @@ export function RadioCard({ name, value, label, checked, onChange }: RadioCardPr
     <label
       className={`cursor-pointer rounded-lg border px-4 py-3 text-center transition-colors ${
         checked
-          ? "border-[--color-orange] bg-orange-50 font-semibold text-[--color-navy]"
-          : "border-[--color-gray-200] text-[--color-gray-600] hover:border-[--color-navy]"
+          ? "border-[var(--color-orange)] bg-orange-50 font-semibold text-[var(--color-navy)]"
+          : "border-[var(--color-gray-200)] text-[var(--color-gray-600)] hover:border-[var(--color-navy)]"
       }`}
     >
       <input
@@ -1512,12 +1512,12 @@ export function ProgressBar({ step, total }: { step: number; total: number }) {
   const percent = (step / total) * 100;
   return (
     <div className="w-full">
-      <div className="mb-2 text-sm text-[--color-gray-600]">
+      <div className="mb-2 text-sm text-[var(--color-gray-600)]">
         Étape {step} sur {total}
       </div>
-      <div className="h-2 w-full rounded-full bg-[--color-gray-200]">
+      <div className="h-2 w-full rounded-full bg-[var(--color-gray-200)]">
         <div
-          className="h-2 rounded-full bg-[--color-orange] transition-all"
+          className="h-2 rounded-full bg-[var(--color-orange)] transition-all"
           style={{ width: `${percent}%` }}
         />
       </div>
@@ -1638,7 +1638,7 @@ export function Step1Vehicle({ value, onChange }: Step1Props) {
       </div>
 
       <div>
-        <p className="mb-2 text-sm font-medium text-[--color-navy]">Carburant</p>
+        <p className="mb-2 text-sm font-medium text-[var(--color-navy)]">Carburant</p>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {CARBURANTS.map((c) => (
             <RadioCard
@@ -1654,7 +1654,7 @@ export function Step1Vehicle({ value, onChange }: Step1Props) {
       </div>
 
       <div>
-        <p className="mb-2 text-sm font-medium text-[--color-navy]">Boîte</p>
+        <p className="mb-2 text-sm font-medium text-[var(--color-navy)]">Boîte</p>
         <div className="grid grid-cols-2 gap-3">
           {BOITES.map((b) => (
             <RadioCard
@@ -1713,7 +1713,7 @@ export function Step2Condition({ value, onChange }: Step2Props) {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <p className="mb-2 text-sm font-medium text-[--color-navy]">État général</p>
+        <p className="mb-2 text-sm font-medium text-[var(--color-navy)]">État général</p>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {ETATS.map((e) => (
             <RadioCard
@@ -1729,7 +1729,7 @@ export function Step2Condition({ value, onChange }: Step2Props) {
       </div>
 
       <div>
-        <p className="mb-2 text-sm font-medium text-[--color-navy]">Accident</p>
+        <p className="mb-2 text-sm font-medium text-[var(--color-navy)]">Accident</p>
         <div className="grid grid-cols-2 gap-3">
           <RadioCard
             name="accident"
@@ -1749,7 +1749,7 @@ export function Step2Condition({ value, onChange }: Step2Props) {
       </div>
 
       <div>
-        <p className="mb-2 text-sm font-medium text-[--color-navy]">Contrôle technique</p>
+        <p className="mb-2 text-sm font-medium text-[var(--color-navy)]">Contrôle technique</p>
         <div className="grid grid-cols-3 gap-3">
           {CONTROLES.map((c) => (
             <RadioCard
@@ -1773,7 +1773,7 @@ export function Step2Condition({ value, onChange }: Step2Props) {
       />
 
       <div>
-        <p className="mb-2 text-sm font-medium text-[--color-navy]">
+        <p className="mb-2 text-sm font-medium text-[var(--color-navy)]">
           Carnet d&apos;entretien disponible
         </p>
         <div className="grid grid-cols-2 gap-3">
@@ -1829,7 +1829,7 @@ export function Step3Situation({ value, onChange }: Step3Props) {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <p className="mb-2 text-sm font-medium text-[--color-navy]">
+        <p className="mb-2 text-sm font-medium text-[var(--color-navy)]">
           Pourquoi souhaitez-vous vendre votre véhicule ?
         </p>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -1847,7 +1847,7 @@ export function Step3Situation({ value, onChange }: Step3Props) {
       </div>
 
       <div>
-        <p className="mb-2 text-sm font-medium text-[--color-navy]">Date souhaitée de vente</p>
+        <p className="mb-2 text-sm font-medium text-[var(--color-navy)]">Date souhaitée de vente</p>
         <div className="grid grid-cols-3 gap-3">
           {DELAIS.map((d) => (
             <RadioCard
@@ -1923,7 +1923,7 @@ export function Step4Contact({ value, onChange }: Step4Props) {
         />
       </div>
 
-      <label className="flex items-start gap-2 text-sm text-[--color-navy]">
+      <label className="flex items-start gap-2 text-sm text-[var(--color-navy)]">
         <input
           type="checkbox"
           checked={value.consentement === true}
@@ -2206,8 +2206,8 @@ export const metadata: Metadata = {
 
 export default function EstimationPage() {
   return (
-    <main className="bg-[--color-gray-50] px-4 py-12">
-      <h1 className="mb-8 text-center text-3xl font-bold text-[--color-navy]">
+    <main className="bg-[var(--color-gray-50)] px-4 py-12">
+      <h1 className="mb-8 text-center text-3xl font-bold text-[var(--color-navy)]">
         Estimez votre véhicule gratuitement
       </h1>
       <StepForm />
@@ -2250,7 +2250,7 @@ export function ResultView() {
   if (!result) {
     return (
       <div className="mx-auto max-w-xl text-center">
-        <p className="mb-6 text-[--color-gray-600]">
+        <p className="mb-6 text-[var(--color-gray-600)]">
           Nous n&apos;avons pas retrouvé de demande récente. Vous pouvez refaire une estimation.
         </p>
         <Link href="/estimation">
@@ -2262,16 +2262,16 @@ export function ResultView() {
 
   return (
     <div className="mx-auto max-w-xl text-center">
-      <h1 className="mb-4 text-3xl font-bold text-[--color-navy]">
+      <h1 className="mb-4 text-3xl font-bold text-[var(--color-navy)]">
         Votre demande d&apos;estimation a bien été enregistrée.
       </h1>
-      <div className="mb-6 rounded-lg border border-[--color-gray-200] bg-white p-6 text-left">
-        <p className="font-semibold text-[--color-navy]">
+      <div className="mb-6 rounded-lg border border-[var(--color-gray-200)] bg-white p-6 text-left">
+        <p className="font-semibold text-[var(--color-navy)]">
           {result.vehicule.marque} {result.vehicule.modele} ({result.vehicule.annee})
         </p>
-        <p className="text-[--color-gray-600]">{result.vehicule.kilometrage} km</p>
+        <p className="text-[var(--color-gray-600)]">{result.vehicule.kilometrage} km</p>
       </div>
-      <p className="mb-8 text-[--color-gray-600]">{MESSAGES[result.urgence]}</p>
+      <p className="mb-8 text-[var(--color-gray-600)]">{MESSAGES[result.urgence]}</p>
       <a href="tel:0123456789">
         <Button>Être rappelé maintenant</Button>
       </a>
@@ -2293,7 +2293,7 @@ export const metadata: Metadata = {
 
 export default function MerciPage() {
   return (
-    <main className="bg-[--color-gray-50] px-4 py-16">
+    <main className="bg-[var(--color-gray-50)] px-4 py-16">
       <ResultView />
     </main>
   );
@@ -2344,9 +2344,9 @@ const NAV_LINKS = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-[--color-gray-200] bg-white">
+    <header className="sticky top-0 z-40 border-b border-[var(--color-gray-200)] bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <Link href="/" className="text-xl font-bold text-[--color-navy]">
+        <Link href="/" className="text-xl font-bold text-[var(--color-navy)]">
           MonEstimationAuto
         </Link>
         <nav className="hidden gap-6 md:flex">
@@ -2354,7 +2354,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-[--color-navy] hover:text-[--color-orange]"
+              className="text-sm font-medium text-[var(--color-navy)] hover:text-[var(--color-orange)]"
             >
               {link.label}
             </Link>
@@ -2374,7 +2374,7 @@ export function Header() {
 ```typescript
 export function Footer() {
   return (
-    <footer className="bg-[--color-navy] px-4 py-10 text-sm text-white">
+    <footer className="bg-[var(--color-navy)] px-4 py-10 text-sm text-white">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:justify-between">
         <div>
           <p className="font-semibold">MonEstimationAuto</p>
@@ -2398,7 +2398,7 @@ export function CallBar() {
   return (
     <a
       href="tel:0123456789"
-      className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-[--color-orange] py-3 text-center font-semibold text-white md:hidden"
+      className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-[var(--color-orange)] py-3 text-center font-semibold text-white md:hidden"
     >
       Appeler maintenant — 01 23 45 67 89
     </a>
@@ -2509,15 +2509,15 @@ export function ExitIntentPopup() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
       <div className="max-w-md rounded-lg bg-white p-8 text-center shadow-xl">
-        <h2 className="mb-3 text-xl font-bold text-[--color-navy]">Avant de partir...</h2>
-        <p className="mb-6 text-[--color-gray-600]">
+        <h2 className="mb-3 text-xl font-bold text-[var(--color-navy)]">Avant de partir...</h2>
+        <p className="mb-6 text-[var(--color-gray-600)]">
           Estimez gratuitement votre véhicule en 2 minutes, sans engagement.
         </p>
         <div className="flex flex-col gap-3">
           <Link href="/estimation" onClick={dismiss}>
             <Button className="w-full">Estimer mon véhicule</Button>
           </Link>
-          <button onClick={dismiss} className="text-sm text-[--color-gray-600] underline">
+          <button onClick={dismiss} className="text-sm text-[var(--color-gray-600)] underline">
             Non merci
           </button>
         </div>
@@ -2567,7 +2567,7 @@ import { Button } from "@/components/ui/Button";
 
 export function Hero() {
   return (
-    <section className="bg-[--color-navy] px-4 py-20 text-white">
+    <section className="bg-[var(--color-navy)] px-4 py-20 text-white">
       <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2">
         <div>
           <h1 className="mb-4 text-4xl font-bold leading-tight md:text-5xl">
@@ -2620,9 +2620,9 @@ export function TrustBadges() {
     <section className="bg-white px-4 py-16">
       <div className="mx-auto grid max-w-6xl gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {BADGES.map((b) => (
-          <div key={b.title} className="rounded-lg border border-[--color-gray-200] p-6">
-            <h3 className="mb-2 font-semibold text-[--color-navy]">{b.title}</h3>
-            <p className="text-sm text-[--color-gray-600]">{b.desc}</p>
+          <div key={b.title} className="rounded-lg border border-[var(--color-gray-200)] p-6">
+            <h3 className="mb-2 font-semibold text-[var(--color-navy)]">{b.title}</h3>
+            <p className="text-sm text-[var(--color-gray-600)]">{b.desc}</p>
           </div>
         ))}
       </div>
@@ -2639,8 +2639,8 @@ import { Button } from "@/components/ui/Button";
 
 export function CTASection() {
   return (
-    <section className="bg-[--color-gray-50] px-4 py-16 text-center">
-      <h2 className="mb-4 text-2xl font-bold text-[--color-navy]">
+    <section className="bg-[var(--color-gray-50)] px-4 py-16 text-center">
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-navy)]">
         Prêt à connaître la valeur de votre véhicule ?
       </h2>
       <Link href="/estimation">
@@ -2726,17 +2726,17 @@ export function HowItWorks({ preview = false }: { preview?: boolean }) {
   const steps = preview ? STEPS.slice(0, 4) : STEPS;
   return (
     <section className="px-4 py-16">
-      <h2 className="mb-10 text-center text-2xl font-bold text-[--color-navy]">
+      <h2 className="mb-10 text-center text-2xl font-bold text-[var(--color-navy)]">
         Comment ça marche
       </h2>
       <div className="mx-auto grid max-w-6xl gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((s, i) => (
           <div key={s.title} className="text-center">
-            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[--color-orange] font-bold text-white">
+            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-orange)] font-bold text-white">
               {i + 1}
             </div>
-            <h3 className="mb-2 font-semibold text-[--color-navy]">{s.title}</h3>
-            <p className="text-sm text-[--color-gray-600]">{s.desc}</p>
+            <h3 className="mb-2 font-semibold text-[var(--color-navy)]">{s.title}</h3>
+            <p className="text-sm text-[var(--color-gray-600)]">{s.desc}</p>
           </div>
         ))}
       </div>
@@ -2758,12 +2758,12 @@ export function Testimonials({ preview = false }: { preview?: boolean }) {
   const items = preview ? TESTIMONIALS.slice(0, 2) : TESTIMONIALS;
   return (
     <section className="bg-white px-4 py-16">
-      <h2 className="mb-10 text-center text-2xl font-bold text-[--color-navy]">Avis clients</h2>
+      <h2 className="mb-10 text-center text-2xl font-bold text-[var(--color-navy)]">Avis clients</h2>
       <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((t) => (
-          <blockquote key={t.name} className="rounded-lg border border-[--color-gray-200] p-6">
-            <p className="mb-4 text-[--color-gray-600]">&ldquo;{t.text}&rdquo;</p>
-            <footer className="text-sm font-semibold text-[--color-navy]">
+          <blockquote key={t.name} className="rounded-lg border border-[var(--color-gray-200)] p-6">
+            <p className="mb-4 text-[var(--color-gray-600)]">&ldquo;{t.text}&rdquo;</p>
+            <footer className="text-sm font-semibold text-[var(--color-navy)]">
               {t.name} — {t.city}
             </footer>
           </blockquote>
@@ -2819,15 +2819,15 @@ export function FAQAccordion() {
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-3">
       {FAQS.map((faq, i) => (
-        <div key={faq.q} className="rounded-lg border border-[--color-gray-200]">
+        <div key={faq.q} className="rounded-lg border border-[var(--color-gray-200)]">
           <button
             onClick={() => setOpenIndex(openIndex === i ? null : i)}
-            className="w-full px-5 py-4 text-left font-medium text-[--color-navy]"
+            className="w-full px-5 py-4 text-left font-medium text-[var(--color-navy)]"
           >
             {faq.q}
           </button>
           {openIndex === i && (
-            <p className="px-5 pb-4 text-[--color-gray-600]">{faq.a}</p>
+            <p className="px-5 pb-4 text-[var(--color-gray-600)]">{faq.a}</p>
           )}
         </div>
       ))}
@@ -2857,7 +2857,7 @@ export const metadata: Metadata = {
 export default function CommentCaMarchePage() {
   return (
     <main>
-      <h1 className="pt-12 text-center text-3xl font-bold text-[--color-navy]">
+      <h1 className="pt-12 text-center text-3xl font-bold text-[var(--color-navy)]">
         Comment ça marche
       </h1>
       <HowItWorks />
@@ -2880,7 +2880,7 @@ export const metadata: Metadata = {
 export default function AvisClientsPage() {
   return (
     <main>
-      <h1 className="pt-12 text-center text-3xl font-bold text-[--color-navy]">Avis clients</h1>
+      <h1 className="pt-12 text-center text-3xl font-bold text-[var(--color-navy)]">Avis clients</h1>
       <Testimonials />
     </main>
   );
@@ -2901,7 +2901,7 @@ export const metadata: Metadata = {
 export default function FAQPage() {
   return (
     <main className="px-4 py-12">
-      <h1 className="mb-10 text-center text-3xl font-bold text-[--color-navy]">
+      <h1 className="mb-10 text-center text-3xl font-bold text-[var(--color-navy)]">
         Questions fréquentes
       </h1>
       <FAQAccordion />
@@ -3001,7 +3001,7 @@ export function ContactForm() {
   }
 
   if (sent) {
-    return <p className="text-[--color-navy]">Votre message bien envoyé. Nous revenons vers vous rapidement.</p>;
+    return <p className="text-[var(--color-navy)]">Votre message bien envoyé. Nous revenons vers vous rapidement.</p>;
   }
 
   return (
@@ -3029,14 +3029,14 @@ export function ContactForm() {
         required
       />
       <div className="flex flex-col gap-1">
-        <label htmlFor="message" className="text-sm font-medium text-[--color-navy]">
+        <label htmlFor="message" className="text-sm font-medium text-[var(--color-navy)]">
           Message
         </label>
         <textarea
           id="message"
           value={values.message}
           onChange={(e) => setValues({ ...values, message: e.target.value })}
-          className="rounded-md border border-[--color-gray-200] px-3 py-2"
+          className="rounded-md border border-[var(--color-gray-200)] px-3 py-2"
           rows={4}
           required
         />
@@ -3068,10 +3068,10 @@ export default function ContactPage() {
   return (
     <main className="mx-auto grid max-w-5xl gap-10 px-4 py-12 md:grid-cols-2">
       <div>
-        <h1 className="mb-6 text-3xl font-bold text-[--color-navy]">Contact</h1>
+        <h1 className="mb-6 text-3xl font-bold text-[var(--color-navy)]">Contact</h1>
         <ContactForm />
       </div>
-      <div className="flex flex-col gap-3 text-[--color-gray-600]">
+      <div className="flex flex-col gap-3 text-[var(--color-gray-600)]">
         <p>Téléphone : 01 23 45 67 89 (placeholder)</p>
         <p>Email : contact@monestimationauto.fr (placeholder)</p>
         <p>Horaires : Lun-Ven 9h-18h (placeholder)</p>
