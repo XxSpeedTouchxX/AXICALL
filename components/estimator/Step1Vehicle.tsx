@@ -73,8 +73,8 @@ export function Step1Vehicle({ value, onChange }: Step1Props) {
         />
       </div>
 
-      <div>
-        <p className="mb-2 text-sm font-medium text-[var(--color-navy)]">Carburant</p>
+      <fieldset className="border-0 p-0 m-0">
+        <legend className="mb-2 text-sm font-medium text-[var(--color-navy)]">Carburant</legend>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {CARBURANTS.map((c) => (
             <RadioCard
@@ -87,10 +87,10 @@ export function Step1Vehicle({ value, onChange }: Step1Props) {
             />
           ))}
         </div>
-      </div>
+      </fieldset>
 
-      <div>
-        <p className="mb-2 text-sm font-medium text-[var(--color-navy)]">Boîte</p>
+      <fieldset className="border-0 p-0 m-0">
+        <legend className="mb-2 text-sm font-medium text-[var(--color-navy)]">Boîte</legend>
         <div className="grid grid-cols-2 gap-3">
           {BOITES.map((b) => (
             <RadioCard
@@ -103,7 +103,7 @@ export function Step1Vehicle({ value, onChange }: Step1Props) {
             />
           ))}
         </div>
-      </div>
+      </fieldset>
     </div>
   );
 }

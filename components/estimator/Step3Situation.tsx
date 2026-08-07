@@ -25,10 +25,10 @@ interface Step3Props {
 export function Step3Situation({ value, onChange }: Step3Props) {
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <p className="mb-2 text-sm font-medium text-[var(--color-navy)]">
+      <fieldset className="border-0 p-0 m-0">
+        <legend className="mb-2 text-sm font-medium text-[var(--color-navy)]">
           Pourquoi souhaitez-vous vendre votre véhicule ?
-        </p>
+        </legend>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {MOTIFS.map((m) => (
             <RadioCard
@@ -41,10 +41,10 @@ export function Step3Situation({ value, onChange }: Step3Props) {
             />
           ))}
         </div>
-      </div>
+      </fieldset>
 
-      <div>
-        <p className="mb-2 text-sm font-medium text-[var(--color-navy)]">Date souhaitée de vente</p>
+      <fieldset className="border-0 p-0 m-0">
+        <legend className="mb-2 text-sm font-medium text-[var(--color-navy)]">Date souhaitée de vente</legend>
         <div className="grid grid-cols-3 gap-3">
           {DELAIS.map((d) => (
             <RadioCard
@@ -57,7 +57,7 @@ export function Step3Situation({ value, onChange }: Step3Props) {
             />
           ))}
         </div>
-      </div>
+      </fieldset>
     </div>
   );
 }

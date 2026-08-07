@@ -25,8 +25,8 @@ interface Step2Props {
 export function Step2Condition({ value, onChange }: Step2Props) {
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <p className="mb-2 text-sm font-medium text-[var(--color-navy)]">État général</p>
+      <fieldset className="border-0 p-0 m-0">
+        <legend className="mb-2 text-sm font-medium text-[var(--color-navy)]">État général</legend>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {ETATS.map((e) => (
             <RadioCard
@@ -39,10 +39,10 @@ export function Step2Condition({ value, onChange }: Step2Props) {
             />
           ))}
         </div>
-      </div>
+      </fieldset>
 
-      <div>
-        <p className="mb-2 text-sm font-medium text-[var(--color-navy)]">Accident</p>
+      <fieldset className="border-0 p-0 m-0">
+        <legend className="mb-2 text-sm font-medium text-[var(--color-navy)]">Accident</legend>
         <div className="grid grid-cols-2 gap-3">
           <RadioCard
             name="accident"
@@ -59,10 +59,10 @@ export function Step2Condition({ value, onChange }: Step2Props) {
             onChange={() => onChange({ accident: false })}
           />
         </div>
-      </div>
+      </fieldset>
 
-      <div>
-        <p className="mb-2 text-sm font-medium text-[var(--color-navy)]">Contrôle technique</p>
+      <fieldset className="border-0 p-0 m-0">
+        <legend className="mb-2 text-sm font-medium text-[var(--color-navy)]">Contrôle technique</legend>
         <div className="grid grid-cols-3 gap-3">
           {CONTROLES.map((c) => (
             <RadioCard
@@ -75,7 +75,7 @@ export function Step2Condition({ value, onChange }: Step2Props) {
             />
           ))}
         </div>
-      </div>
+      </fieldset>
 
       <Input
         label="Nombre de propriétaires"
@@ -85,10 +85,10 @@ export function Step2Condition({ value, onChange }: Step2Props) {
         onChange={(e) => onChange({ nombreProprietaires: Number(e.target.value) })}
       />
 
-      <div>
-        <p className="mb-2 text-sm font-medium text-[var(--color-navy)]">
+      <fieldset className="border-0 p-0 m-0">
+        <legend className="mb-2 text-sm font-medium text-[var(--color-navy)]">
           Carnet d&apos;entretien disponible
-        </p>
+        </legend>
         <div className="grid grid-cols-2 gap-3">
           <RadioCard
             name="carnetEntretien"
@@ -105,7 +105,7 @@ export function Step2Condition({ value, onChange }: Step2Props) {
             onChange={() => onChange({ carnetEntretien: false })}
           />
         </div>
-      </div>
+      </fieldset>
     </div>
   );
 }
