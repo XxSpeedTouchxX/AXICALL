@@ -4,7 +4,12 @@ import { scoreLead } from "@/lib/scoring";
 import { saveLead } from "@/lib/leads";
 
 export async function POST(request: Request) {
-  const body = await request.json();
+  let body: any;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+  }
 
   if (body.formType === "contact") {
     const parsed = contactFormSchema.safeParse(body);

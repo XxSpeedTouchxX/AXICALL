@@ -88,4 +88,15 @@ describe("POST /api/leads", () => {
     const body = await res.json();
     expect(body.id).toBeTruthy();
   });
+
+  it("returns 400 for a malformed JSON body", async () => {
+    const req = new Request("http://localhost/api/leads", {
+      method: "POST",
+      body: "{",
+    });
+    const res = await POST(req);
+    expect(res.status).toBe(400);
+    const body = await res.json();
+    expect(body.error).toBeTruthy();
+  });
 });
