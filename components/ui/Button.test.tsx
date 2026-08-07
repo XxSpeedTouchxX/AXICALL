@@ -10,11 +10,11 @@ describe("Button", () => {
 
   it("applies the orange variant class by default", () => {
     render(<Button>CTA</Button>);
-    expect(screen.getByRole("button")).toHaveClass("bg-[--color-orange]");
+    expect(screen.getByRole("button")).toHaveClass("bg-[var(--color-orange)]");
   });
 
   it("applies the outline variant class when specified", () => {
     render(<Button variant="outline">Secondaire</Button>);
-    expect(screen.getByRole("button")).not.toHaveClass("bg-[--color-orange]");
+    expect(screen.getByRole("button")).not.toHaveClass("bg-[var(--color-orange)]");
   });
 });

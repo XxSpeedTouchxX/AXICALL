@@ -15,13 +15,13 @@ export function Select({ label, options, error, id, name, className = "", ...pro
   const selectId = id ?? name;
   return (
     <div className="flex flex-col gap-1">
-      <label htmlFor={selectId} className="text-sm font-medium text-[--color-navy]">
+      <label htmlFor={selectId} className="text-sm font-medium text-[var(--color-navy)]">
         {label}
       </label>
       <select
         id={selectId}
         name={name}
-        className={`rounded-md border border-[--color-gray-200] px-3 py-2 focus:border-[--color-orange] focus:outline-none ${className}`}
+        className={`rounded-md border border-[var(--color-gray-200)] px-3 py-2 focus:border-[var(--color-orange)] focus:outline-none ${className}`}
         {...props}
       >
         <option value="">Sélectionner...</option>

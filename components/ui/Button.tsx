@@ -7,9 +7,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantClasses: Record<Variant, string> = {
-  orange: "bg-[--color-orange] hover:bg-[--color-orange-dark] text-white",
-  navy: "bg-[--color-navy] hover:bg-[--color-navy-light] text-white",
-  outline: "border border-[--color-navy] text-[--color-navy] hover:bg-[--color-gray-50]",
+  orange: "bg-[var(--color-orange)] hover:bg-[var(--color-orange-dark)] text-white",
+  navy: "bg-[var(--color-navy)] hover:bg-[var(--color-navy-light)] text-white",
+  outline: "border border-[var(--color-navy)] text-[var(--color-navy)] hover:bg-[var(--color-gray-50)]",
 };
 
 export function Button({ variant = "orange", className = "", ...props }: ButtonProps) {
