@@ -24,6 +24,18 @@ export default function HomePage() {
       <HowItWorks preview />
       <Testimonials preview />
       <CTASection />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            name: "MonEstimationAuto",
+            description: "Estimation gratuite et rachat de véhicules d'occasion.",
+            areaServed: "FR",
+          }),
+        }}
+      />
     </main>
   );
 }
