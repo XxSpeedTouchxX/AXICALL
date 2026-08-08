@@ -61,7 +61,7 @@ export function ContactForm() {
           id="message"
           value={values.message}
           onChange={(e) => setValues({ ...values, message: e.target.value })}
-          className="rounded-md border border-[var(--color-gray-200)] px-3 py-2"
+          className="rounded-md border border-[var(--color-gray-200)] bg-white px-3 py-2 text-[var(--color-navy)]"
           rows={4}
           required
         />

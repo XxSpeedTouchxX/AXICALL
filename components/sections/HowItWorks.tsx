@@ -15,7 +15,7 @@ export function HowItWorks({ preview = false }: { preview?: boolean }) {
       <div className="mx-auto grid max-w-6xl gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((s, i) => (
           <div key={s.title} className="text-center">
-            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-orange)] font-bold text-white">
+            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-orange)] font-bold text-[var(--color-navy)]">
               {i + 1}
             </div>
             <h3 className="mb-2 font-semibold text-[var(--color-navy)]">{s.title}</h3>

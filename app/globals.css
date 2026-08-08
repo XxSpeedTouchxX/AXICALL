@@ -19,12 +19,14 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/*
+ * MonEstimationAuto is a light-themed site by design (navy/white/gray/orange).
+ * The automatic dark-mode override that create-next-app generates here was
+ * removed intentionally: it swapped body text/background for near-white-on-
+ * near-black on devices with a dark system preference, while every section
+ * and form control on this site assumes a light background — the result was
+ * invisible (light-on-light) text in form fields for dark-mode users.
+ */
 
 body {
   background: var(--background);

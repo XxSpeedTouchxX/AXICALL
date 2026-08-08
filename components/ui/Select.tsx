@@ -21,7 +21,7 @@ export function Select({ label, options, error, id, name, className = "", ...pro
       <select
         id={selectId}
         name={name}
-        className={`rounded-md border border-[var(--color-gray-200)] px-3 py-2 focus:border-[var(--color-orange)] focus:outline-none ${className}`}
+        className={`rounded-md border border-[var(--color-gray-200)] bg-white px-3 py-2 text-[var(--color-navy)] focus:border-[var(--color-orange)] focus:outline-none ${className}`}
         {...props}
       >
         <option value="">Sélectionner...</option>
