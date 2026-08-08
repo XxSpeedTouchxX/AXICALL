@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withSentryConfig } from "@sentry/nextjs";
 
 // Baseline security headers. script-src/style-src keep 'unsafe-inline' since
 // Next.js's App Router injects inline hydration scripts/styles without a
@@ -19,7 +20,7 @@ const securityHeaders = [
       "img-src 'self' data:",
       "media-src 'self'",
       "font-src 'self' data:",
-      "connect-src 'self' https://geo.api.gouv.fr",
+      "connect-src 'self' https://geo.api.gouv.fr https://*.sentry.io https://*.ingest.us.sentry.io",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",
@@ -38,4 +39,15 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+// Without SENTRY_AUTH_TOKEN set, source map upload is skipped (logged, not
+// failed) — the build succeeds without a Sentry account, same as the
+// runtime SDK itself being a no-op without SENTRY_DSN (see instrumentation.ts).
+export default withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: true,
+  sourcemaps: {
+    disable: !process.env.SENTRY_AUTH_TOKEN,
+  },
+});

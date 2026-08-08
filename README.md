@@ -21,6 +21,27 @@ npm test
 
 Lance la suite Vitest (unitaire + composants). `npm run build` vérifie en plus le typage TypeScript et la compilation de production.
 
+### Tests end-to-end (Playwright)
+
+```bash
+npx playwright install chromium   # une seule fois
+npm run test:e2e
+```
+
+Fait tourner un vrai build (`next build && next start`) puis simule un visiteur dans Chromium : accueil → simulateur en 4 étapes → soumission → page résultat, plus le cas de blocage sur champs manquants. Les specs sont dans [`e2e/`](e2e/), configuration dans [`playwright.config.ts`](playwright.config.ts).
+
+## Intégration continue
+
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml) lance automatiquement sur chaque push/pull request : tests Vitest + build (job `test-and-build`), et les tests Playwright dans un navigateur headless (job `e2e`). Aucune configuration ni secret requis pour que la CI passe — les intégrations optionnelles (Resend, Sentry) restent inactives sans leurs clés.
+
+## Monitoring d'erreurs (Sentry)
+
+Le SDK [`@sentry/nextjs`](https://docs.sentry.io/platforms/javascript/guides/nextjs/) est installé et initialisé dans [`instrumentation.ts`](instrumentation.ts) (serveur/edge) et [`instrumentation-client.ts`](instrumentation-client.ts) (navigateur). **Sans `SENTRY_DSN`/`NEXT_PUBLIC_SENTRY_DSN` configurées, le SDK ne fait rien** (`enabled: false`) — aucune erreur n'est envoyée nulle part, le build et les tests fonctionnent sans compte Sentry. Pour activer :
+
+1. Créez un projet sur [sentry.io](https://sentry.io) (ou un self-hosted) et récupérez son DSN.
+2. Ajoutez `SENTRY_DSN` et `NEXT_PUBLIC_SENTRY_DSN` (même valeur) dans `.env.local`/variables Vercel.
+3. Pour l'upload des source maps (traces d'erreur lisibles en production), ajoutez aussi `SENTRY_ORG`, `SENTRY_PROJECT` et `SENTRY_AUTH_TOKEN` — sans `SENTRY_AUTH_TOKEN`, l'upload est simplement ignoré au build, sans échec.
+
 ## Déploiement sur Vercel
 
 1. Poussez le dépôt sur GitHub.
