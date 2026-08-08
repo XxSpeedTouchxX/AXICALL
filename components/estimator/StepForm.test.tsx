@@ -26,13 +26,13 @@ afterEach(() => {
 });
 
 async function fillStep1(user: ReturnType<typeof userEvent.setup>) {
-  await user.type(screen.getByLabelText("Marque"), "Renault");
+  await user.selectOptions(screen.getByLabelText("Marque"), "Renault");
   await user.type(screen.getByLabelText("Modèle"), "Clio");
-  await user.type(screen.getByLabelText("Année"), "2020");
+  await user.selectOptions(screen.getByLabelText("Année"), "2020");
   await user.type(screen.getByLabelText("Version / finition"), "Zen");
   await user.type(screen.getByLabelText("Kilométrage"), "40000");
   await user.type(screen.getByLabelText("Puissance fiscale"), "5");
-  await user.type(screen.getByLabelText("Nombre de portes"), "5");
+  await user.selectOptions(screen.getByLabelText("Nombre de portes"), "5");
   await user.click(screen.getByText("Diesel"));
   await user.click(screen.getByText("Manuelle"));
 }

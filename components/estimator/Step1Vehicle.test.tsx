@@ -4,12 +4,12 @@ import userEvent from "@testing-library/user-event";
 import { Step1Vehicle } from "./Step1Vehicle";
 
 describe("Step1Vehicle", () => {
-  it("calls onChange with the entered marque", async () => {
+  it("calls onChange with the selected marque", async () => {
     const onChange = vi.fn();
     render(<Step1Vehicle value={{}} onChange={onChange} />);
     const user = userEvent.setup();
-    await user.type(screen.getByLabelText("Marque"), "Renault");
-    expect(onChange).toHaveBeenCalled();
+    await user.selectOptions(screen.getByLabelText("Marque"), "Renault");
+    expect(onChange).toHaveBeenCalledWith({ marque: "Renault" });
   });
 
   it("renders fuel type options as radio cards", () => {
