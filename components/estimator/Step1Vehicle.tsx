@@ -3,7 +3,7 @@
 import type { VehicleInfo, Carburant, Boite } from "@/types/vehicle";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
-import { RadioCard } from "@/components/ui/RadioCard";
+import { RadioGroupField } from "@/components/ui/RadioGroupField";
 
 const CARBURANTS: { value: Carburant; label: string }[] = [
   { value: "essence", label: "Essence" },
@@ -210,7 +210,9 @@ export function Step1Vehicle({ value, onChange }: Step1Props) {
           name="kilometrage"
           type="number"
           value={value.kilometrage ?? ""}
-          onChange={(e) => onChange({ kilometrage: Number(e.target.value) })}
+          onChange={(e) =>
+            onChange({ kilometrage: e.target.value ? Number(e.target.value) : undefined })
+          }
         />
         <Input
           label="Puissance fiscale (optionnel)"
@@ -230,37 +232,22 @@ export function Step1Vehicle({ value, onChange }: Step1Props) {
         />
       </div>
 
-      <fieldset className="border-0 p-0 m-0">
-        <legend className="mb-2 text-sm font-medium text-[var(--color-navy)]">Carburant</legend>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {CARBURANTS.map((c) => (
-            <RadioCard
-              key={c.value}
-              name="carburant"
-              value={c.value}
-              label={c.label}
-              checked={value.carburant === c.value}
-              onChange={(v) => onChange({ carburant: v as Carburant })}
-            />
-          ))}
-        </div>
-      </fieldset>
+      <RadioGroupField
+        legend="Carburant"
+        name="carburant"
+        options={CARBURANTS}
+        value={value.carburant}
+        onChange={(carburant) => onChange({ carburant })}
+        columns="grid-cols-2 sm:grid-cols-4"
+      />
 
-      <fieldset className="border-0 p-0 m-0">
-        <legend className="mb-2 text-sm font-medium text-[var(--color-navy)]">Boîte</legend>
-        <div className="grid grid-cols-2 gap-3">
-          {BOITES.map((b) => (
-            <RadioCard
-              key={b.value}
-              name="boite"
-              value={b.value}
-              label={b.label}
-              checked={value.boite === b.value}
-              onChange={(v) => onChange({ boite: v as Boite })}
-            />
-          ))}
-        </div>
-      </fieldset>
+      <RadioGroupField
+        legend="Boîte"
+        name="boite"
+        options={BOITES}
+        value={value.boite}
+        onChange={(boite) => onChange({ boite })}
+      />
     </div>
   );
 }

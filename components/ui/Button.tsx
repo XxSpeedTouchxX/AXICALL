@@ -1,4 +1,5 @@
 import type { ButtonHTMLAttributes } from "react";
+import { cn } from "@/lib/cn";
 
 type Variant = "orange" | "navy" | "outline" | "outline-inverse";
 
@@ -16,7 +17,11 @@ const variantClasses: Record<Variant, string> = {
 export function Button({ variant = "orange", className = "", ...props }: ButtonProps) {
   return (
     <button
-      className={`inline-flex items-center justify-center rounded-md px-6 py-3 font-semibold transition-colors ${variantClasses[variant]} ${className}`}
+      className={cn(
+        "inline-flex items-center justify-center rounded-md px-6 py-3 font-semibold transition-colors",
+        variantClasses[variant],
+        className
+      )}
       {...props}
     />
   );

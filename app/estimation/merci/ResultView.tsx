@@ -24,7 +24,13 @@ export function ResultView() {
 
   useEffect(() => {
     const raw = sessionStorage.getItem("estimation-result");
-    if (raw) setResult(JSON.parse(raw));
+    if (!raw) return;
+    try {
+      setResult(JSON.parse(raw));
+    } catch {
+      // Malformed/tampered sessionStorage value — fall back to the "no recent
+      // request found" state below instead of crashing the page.
+    }
   }, []);
 
   if (!result) {

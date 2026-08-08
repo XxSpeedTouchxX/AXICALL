@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { Z_INDEX } from "@/lib/zIndex";
 
 const DISMISS_KEY = "exit-intent-dismissed";
 const MOBILE_IDLE_MS = 30000;
@@ -75,7 +76,7 @@ export function ExitIntentPopup() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4"
+      className={`fixed inset-0 ${Z_INDEX.overlay} flex items-center justify-center bg-black/50 px-4`}
       role="dialog"
       aria-modal="true"
       aria-labelledby="exit-intent-title"

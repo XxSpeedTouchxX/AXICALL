@@ -10,6 +10,11 @@
   --color-gray-50: #f7f8fa;
   --color-gray-200: #e2e5eb;
   --color-gray-600: #5b6270;
+
+  /* Single source of truth for the site's z-index scale — see lib/zIndex.ts
+     for the TypeScript-side constants that reference these same layers. */
+  --z-header: 40;
+  --z-overlay: 50;
 }
 
 @theme inline {

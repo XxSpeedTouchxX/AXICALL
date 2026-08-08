@@ -1,7 +1,7 @@
 "use client";
 
 import type { SellerSituation, MotifVente, DelaiVente } from "@/types/vehicle";
-import { RadioCard } from "@/components/ui/RadioCard";
+import { RadioGroupField } from "@/components/ui/RadioGroupField";
 
 const MOTIFS: { value: MotifVente; label: string }[] = [
   { value: "nouveau_vehicule", label: "Acheter un nouveau véhicule" },
@@ -25,39 +25,23 @@ interface Step3Props {
 export function Step3Situation({ value, onChange }: Step3Props) {
   return (
     <div className="flex flex-col gap-6">
-      <fieldset className="border-0 p-0 m-0">
-        <legend className="mb-2 text-sm font-medium text-[var(--color-navy)]">
-          Pourquoi souhaitez-vous vendre votre véhicule ?
-        </legend>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {MOTIFS.map((m) => (
-            <RadioCard
-              key={m.value}
-              name="motifVente"
-              value={m.value}
-              label={m.label}
-              checked={value.motifVente === m.value}
-              onChange={(v) => onChange({ motifVente: v as MotifVente })}
-            />
-          ))}
-        </div>
-      </fieldset>
+      <RadioGroupField
+        legend="Pourquoi souhaitez-vous vendre votre véhicule ?"
+        name="motifVente"
+        options={MOTIFS}
+        value={value.motifVente}
+        onChange={(motifVente) => onChange({ motifVente })}
+        columns="grid-cols-1 sm:grid-cols-2"
+      />
 
-      <fieldset className="border-0 p-0 m-0">
-        <legend className="mb-2 text-sm font-medium text-[var(--color-navy)]">Date souhaitée de vente</legend>
-        <div className="grid grid-cols-3 gap-3">
-          {DELAIS.map((d) => (
-            <RadioCard
-              key={d.value}
-              name="delaiVente"
-              value={d.value}
-              label={d.label}
-              checked={value.delaiVente === d.value}
-              onChange={(v) => onChange({ delaiVente: v as DelaiVente })}
-            />
-          ))}
-        </div>
-      </fieldset>
+      <RadioGroupField
+        legend="Date souhaitée de vente"
+        name="delaiVente"
+        options={DELAIS}
+        value={value.delaiVente}
+        onChange={(delaiVente) => onChange({ delaiVente })}
+        columns="grid-cols-3"
+      />
     </div>
   );
 }

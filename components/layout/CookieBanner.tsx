@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { Z_INDEX } from "@/lib/zIndex";
 
 const CONSENT_KEY = "cookie-consent";
 
@@ -32,7 +33,7 @@ export function CookieBanner() {
     <div
       role="region"
       aria-label="Consentement aux cookies"
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-[var(--color-gray-200)] bg-white px-4 py-4 shadow-[0_-2px_10px_rgba(0,0,0,0.08)]"
+      className={`fixed inset-x-0 bottom-0 ${Z_INDEX.overlay} border-t border-[var(--color-gray-200)] bg-white px-4 py-4 shadow-[0_-2px_10px_rgba(0,0,0,0.08)]`}
     >
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 sm:flex-row sm:justify-between">
         <p className="text-sm text-[var(--color-gray-600)]">

@@ -16,26 +16,43 @@ import { Step3Situation } from "./Step3Situation";
 import { Step4Contact } from "./Step4Contact";
 import { Button } from "@/components/ui/Button";
 
-const STEP_SCHEMAS = [
-  vehicleInfoSchema,
-  vehicleConditionSchema,
-  sellerSituationSchema,
-  contactInfoSchema,
-];
-
 export function StepForm() {
   const router = useRouter();
   const form = useEstimationForm();
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  const stepData = [form.data.vehicle, form.data.condition, form.data.situation, form.data.contact][
-    form.step - 1
+  // Single source of truth per step: its validation schema, the data it
+  // validates, and the element it renders — instead of three separate
+  // parallel arrays/conditionals kept in sync by hand.
+  const steps = [
+    {
+      schema: vehicleInfoSchema,
+      data: form.data.vehicle,
+      element: <Step1Vehicle value={form.data.vehicle} onChange={form.updateVehicle} />,
+    },
+    {
+      schema: vehicleConditionSchema,
+      data: form.data.condition,
+      element: <Step2Condition value={form.data.condition} onChange={form.updateCondition} />,
+    },
+    {
+      schema: sellerSituationSchema,
+      data: form.data.situation,
+      element: <Step3Situation value={form.data.situation} onChange={form.updateSituation} />,
+    },
+    {
+      schema: contactInfoSchema,
+      data: form.data.contact,
+      element: <Step4Contact value={form.data.contact} onChange={form.updateContact} />,
+    },
   ];
 
+  const currentStep = steps[form.step - 1];
+  const isLastStep = form.step === steps.length;
+
   function handleNext() {
-    const schema = STEP_SCHEMAS[form.step - 1];
-    const result = schema.safeParse(stepData);
+    const result = currentStep.schema.safeParse(currentStep.data);
     if (!result.success) {
       setError("Merci de compléter tous les champs requis.");
       return;
@@ -75,16 +92,9 @@ export function StepForm() {
 
   return (
     <div className="mx-auto flex max-w-2xl flex-col gap-8">
-      <ProgressBar step={form.step} total={4} />
+      <ProgressBar step={form.step} total={steps.length} />
 
-      {form.step === 1 && <Step1Vehicle value={form.data.vehicle} onChange={form.updateVehicle} />}
-      {form.step === 2 && (
-        <Step2Condition value={form.data.condition} onChange={form.updateCondition} />
-      )}
-      {form.step === 3 && (
-        <Step3Situation value={form.data.situation} onChange={form.updateSituation} />
-      )}
-      {form.step === 4 && <Step4Contact value={form.data.contact} onChange={form.updateContact} />}
+      {currentStep.element}
 
       {error && <p className="text-sm text-red-600">{error}</p>}
 
@@ -96,7 +106,7 @@ export function StepForm() {
         ) : (
           <span />
         )}
-        {form.step < 4 ? (
+        {!isLastStep ? (
           <Button onClick={handleNext}>Suivant</Button>
         ) : (
           <Button onClick={handleSubmit} disabled={submitting}>
