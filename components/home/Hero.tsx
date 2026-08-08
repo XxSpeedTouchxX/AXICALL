@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 
 export function Hero() {
@@ -23,14 +22,17 @@ export function Hero() {
             </Link>
           </div>
         </div>
-        <div className="relative aspect-video overflow-hidden rounded-lg">
-          <Image
-            src="/hero-car.jpg"
-            alt="Véhicule d'occasion premium"
-            fill
-            className="object-cover"
-            priority
-          />
+        <div className="relative aspect-video overflow-hidden rounded-lg bg-black">
+          <video
+            className="h-full w-full object-cover"
+            src="/hero-video.mp4"
+            poster="/hero-car.jpg"
+            controls
+            preload="metadata"
+            playsInline
+          >
+            Votre navigateur ne prend pas en charge la lecture vidéo.
+          </video>
         </div>
       </div>
     </section>
