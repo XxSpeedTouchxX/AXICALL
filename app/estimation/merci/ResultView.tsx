@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { COMPANY } from "@/lib/company";
 
 interface StoredResult {
   id: string;
@@ -51,7 +52,7 @@ export function ResultView() {
         <p className="text-[var(--color-gray-600)]">{result.vehicule.kilometrage} km</p>
       </div>
       <p className="mb-8 text-[var(--color-gray-600)]">{MESSAGES[result.urgence]}</p>
-      <a href="tel:0123456789">
+      <a href={COMPANY.phoneHref}>
         <Button>Être rappelé maintenant</Button>
       </a>
     </div>

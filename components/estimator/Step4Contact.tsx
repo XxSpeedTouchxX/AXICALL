@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import type { ContactInfo } from "@/types/vehicle";
 import { Input } from "@/components/ui/Input";
 
@@ -61,6 +62,13 @@ export function Step4Contact({ value, onChange }: Step4Props) {
         />
         J&apos;accepte d&apos;être contacté concernant mon estimation.
       </label>
+      <p className="text-xs text-[var(--color-gray-600)]">
+        En savoir plus dans notre{" "}
+        <Link href="/politique-de-confidentialite" className="underline hover:text-[var(--color-navy)]">
+          politique de confidentialité
+        </Link>
+        .
+      </p>
     </div>
   );
 }

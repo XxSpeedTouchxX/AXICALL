@@ -10,6 +10,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/avis-clients",
     "/faq",
     "/contact",
+    "/mentions-legales",
+    "/politique-de-confidentialite",
+    "/cgu",
   ];
   return routes.map((route) => ({
     url: `${BASE_URL}${route}`,

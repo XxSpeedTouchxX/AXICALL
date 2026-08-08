@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { COMPANY } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Contact | MonEstimationAuto",
@@ -14,9 +15,9 @@ export default function ContactPage() {
         <ContactForm />
       </div>
       <div className="flex flex-col gap-3 text-[var(--color-gray-600)]">
-        <p>Téléphone : 01 23 45 67 89 (placeholder)</p>
-        <p>Email : contact@monestimationauto.fr (placeholder)</p>
-        <p>Horaires : Lun-Ven 9h-18h (placeholder)</p>
+        <p>Téléphone : {COMPANY.phone}</p>
+        <p>Email : {COMPANY.email}</p>
+        <p>Horaires : {COMPANY.hours}</p>
       </div>
       <script
         type="application/ld+json"
@@ -27,6 +28,8 @@ export default function ContactPage() {
             name: "MonEstimationAuto",
             description: "Estimation gratuite et rachat de véhicules d'occasion.",
             areaServed: "FR",
+            telephone: COMPANY.phone,
+            email: COMPANY.email,
           }),
         }}
       />

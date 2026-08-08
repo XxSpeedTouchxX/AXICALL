@@ -4,6 +4,7 @@ import { TrustBadges } from "@/components/home/TrustBadges";
 import { CTASection } from "@/components/home/CTASection";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Testimonials } from "@/components/sections/Testimonials";
+import { COMPANY } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Estimation voiture gratuite et rachat rapide | MonEstimationAuto",
@@ -33,6 +34,13 @@ export default function HomePage() {
             name: "MonEstimationAuto",
             description: "Estimation gratuite et rachat de véhicules d'occasion.",
             areaServed: "FR",
+            telephone: COMPANY.phone,
+            email: COMPANY.email,
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: COMPANY.address,
+              addressCountry: "FR",
+            },
           }),
         }}
       />
