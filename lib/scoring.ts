@@ -1,6 +1,6 @@
 import type { EstimationFormData } from "@/types/vehicle";
 import type { Urgence } from "@/types/lead";
-import { isValidFrenchPhone } from "./phone";
+import { isValidInternationalPhone } from "./phone";
 
 export interface ScoreResult {
   score: number;
@@ -25,7 +25,7 @@ export function scoreLead(form: EstimationFormData): ScoreResult {
     score += 10;
   }
 
-  if (isValidFrenchPhone(form.contact.telephone)) {
+  if (isValidInternationalPhone(form.contact.telephone)) {
     score += 15;
   }
 

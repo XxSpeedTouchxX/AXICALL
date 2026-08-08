@@ -27,6 +27,9 @@ function sampleLead(): Omit<EstimationLead, "id" | "createdAt" | "statut"> {
     },
     score: 75,
     urgence: "chaud",
+    // dateExpiration is a placeholder here — saveLead() overwrites it with a
+    // real value computed from its own createdAt at save time.
+    consentement: { texte: "J'accepte d'être contacté.", dateExpiration: "" },
   };
 }
 
@@ -57,5 +60,15 @@ describe("saveLead", () => {
     await saveLead(sampleLead());
     const all = await getAllLeads();
     expect(all.length).toBe(2);
+  });
+
+  it("stores the consent text and computes a 12-month expiration for estimation leads", async () => {
+    const lead = await saveLead(sampleLead());
+    if (lead.type !== "estimation") throw new Error("expected an estimation lead");
+    expect(lead.consentement.texte).toBe("J'accepte d'être contacté.");
+    const created = new Date(lead.createdAt).getTime();
+    const expires = new Date(lead.consentement.dateExpiration).getTime();
+    const daysBetween = Math.round((expires - created) / (1000 * 60 * 60 * 24));
+    expect(daysBetween).toBe(365);
   });
 });

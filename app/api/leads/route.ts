@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { estimationFormSchema, contactFormSchema } from "@/lib/validation";
 import { scoreLead } from "@/lib/scoring";
 import { saveLead } from "@/lib/leads";
+import { CONSENT_TEXT } from "@/lib/company";
 
 export async function POST(request: Request) {
   let body: any;
@@ -53,6 +54,7 @@ export async function POST(request: Request) {
     },
     score,
     urgence,
+    consentement: { texte: CONSENT_TEXT },
   });
 
   return NextResponse.json({ id: lead.id, score, urgence });

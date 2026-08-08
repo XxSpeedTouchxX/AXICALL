@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Input } from "@/components/ui/Input";
+import { PhoneField } from "@/components/ui/PhoneField";
 import { Button } from "@/components/ui/Button";
 
 export function ContactForm() {
@@ -46,12 +47,9 @@ export function ContactForm() {
         onChange={(e) => setValues({ ...values, email: e.target.value })}
         required
       />
-      <Input
-        label="Téléphone"
-        name="telephone"
+      <PhoneField
         value={values.telephone}
-        onChange={(e) => setValues({ ...values, telephone: e.target.value })}
-        required
+        onChange={(telephone) => setValues({ ...values, telephone })}
       />
       <div className="flex flex-col gap-1">
         <label htmlFor="message" className="text-sm font-medium text-[var(--color-navy)]">

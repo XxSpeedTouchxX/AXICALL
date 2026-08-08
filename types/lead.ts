@@ -28,6 +28,14 @@ export interface EstimationLead extends LeadBase {
   };
   score: number;
   urgence: Urgence;
+  /**
+   * Proof of consent for phone prospecting (AXICALL_Pilotage_Consentements.pdf):
+   * verbatim text agreed to, and its 12-month expiration computed at save time.
+   */
+  consentement: {
+    texte: string;
+    dateExpiration: string;
+  };
 }
 
 export interface ContactLead extends LeadBase {

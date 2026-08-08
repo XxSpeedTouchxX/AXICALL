@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { isValidFrenchPhone } from "./phone";
+import { isValidInternationalPhone } from "./phone";
 
 const currentYear = new Date().getFullYear();
 
@@ -47,7 +47,7 @@ export const contactInfoSchema = z.object({
   prenom: z.string().min(1, "Prénom requis"),
   telephone: z
     .string()
-    .refine(isValidFrenchPhone, "Numéro de téléphone français invalide"),
+    .refine(isValidInternationalPhone, "Numéro de téléphone invalide"),
   email: z.string().email("Email invalide"),
   ville: z.string().min(1, "Ville requise"),
   codePostal: z.string().regex(/^\d{5}$/, "Code postal invalide"),
@@ -68,7 +68,7 @@ export const contactFormSchema = z.object({
   email: z.string().email("Email invalide"),
   telephone: z
     .string()
-    .refine(isValidFrenchPhone, "Numéro de téléphone français invalide"),
+    .refine(isValidInternationalPhone, "Numéro de téléphone invalide"),
   message: z.string().min(1, "Message requis"),
 });
 

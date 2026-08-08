@@ -3,6 +3,9 @@
 import Link from "next/link";
 import type { ContactInfo } from "@/types/vehicle";
 import { Input } from "@/components/ui/Input";
+import { PhoneField } from "@/components/ui/PhoneField";
+import { CityPostalFields } from "./CityPostalFields";
+import { CONSENT_TEXT } from "@/lib/company";
 
 interface Step4Props {
   value: Partial<ContactInfo>;
@@ -25,12 +28,9 @@ export function Step4Contact({ value, onChange }: Step4Props) {
           value={value.prenom ?? ""}
           onChange={(e) => onChange({ prenom: e.target.value })}
         />
-        <Input
-          label="Téléphone"
-          name="telephone"
-          type="tel"
+        <PhoneField
           value={value.telephone ?? ""}
-          onChange={(e) => onChange({ telephone: e.target.value })}
+          onChange={(telephone) => onChange({ telephone })}
         />
         <Input
           label="Email"
@@ -39,17 +39,10 @@ export function Step4Contact({ value, onChange }: Step4Props) {
           value={value.email ?? ""}
           onChange={(e) => onChange({ email: e.target.value })}
         />
-        <Input
-          label="Ville"
-          name="ville"
-          value={value.ville ?? ""}
-          onChange={(e) => onChange({ ville: e.target.value })}
-        />
-        <Input
-          label="Code postal"
-          name="codePostal"
-          value={value.codePostal ?? ""}
-          onChange={(e) => onChange({ codePostal: e.target.value })}
+        <CityPostalFields
+          ville={value.ville ?? ""}
+          codePostal={value.codePostal ?? ""}
+          onChange={(patch) => onChange(patch)}
         />
       </div>
 
@@ -60,7 +53,7 @@ export function Step4Contact({ value, onChange }: Step4Props) {
           onChange={(e) => onChange({ consentement: e.target.checked })}
           className="mt-1"
         />
-        J&apos;accepte d&apos;être contacté concernant mon estimation.
+        {CONSENT_TEXT}
       </label>
       <p className="text-xs text-[var(--color-gray-600)]">
         En savoir plus dans notre{" "}

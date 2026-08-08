@@ -2,9 +2,13 @@ import fs from "node:fs";
 import path from "node:path";
 import type { ContactLead, EstimationLead, Lead } from "@/types/lead";
 
-type NewLead =
-  | Omit<EstimationLead, "id" | "createdAt" | "statut">
-  | Omit<ContactLead, "id" | "createdAt" | "statut">;
+type NewEstimationLead = Omit<EstimationLead, "id" | "createdAt" | "statut" | "consentement"> & {
+  consentement: { texte: string };
+};
+
+type NewLead = NewEstimationLead | Omit<ContactLead, "id" | "createdAt" | "statut">;
+
+const CONSENT_DURATION_DAYS = 365;
 
 const DATA_FILE = path.join(process.cwd(), "data", "leads.json");
 
@@ -30,12 +34,23 @@ function writeLeads(leads: Lead[]): void {
  * Supabase insert (or any other backend) without changing any caller.
  */
 export async function saveLead(lead: NewLead): Promise<Lead> {
+  const createdAt = new Date();
+
   const fullLead = {
     ...lead,
     id: crypto.randomUUID(),
-    createdAt: new Date().toISOString(),
+    createdAt: createdAt.toISOString(),
     statut: "nouveau",
   } as Lead;
+
+  if (fullLead.type === "estimation") {
+    const dateExpiration = new Date(createdAt);
+    dateExpiration.setDate(dateExpiration.getDate() + CONSENT_DURATION_DAYS);
+    fullLead.consentement = {
+      texte: fullLead.consentement.texte,
+      dateExpiration: dateExpiration.toISOString(),
+    };
+  }
 
   const leads = readLeads();
   leads.push(fullLead);
