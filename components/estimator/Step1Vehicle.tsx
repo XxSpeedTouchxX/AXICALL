@@ -55,12 +55,55 @@ const ANNEES = Array.from({ length: currentYear - 1979 }, (_, i) => currentYear 
 
 const NOMBRE_PORTES = [2, 3, 4, 5].map((n) => ({ value: String(n), label: String(n) }));
 
+/** Popular models per brand, for the cascading "Modèle" dropdown. Not exhaustive —
+ * anything not listed falls back to "Autre / non listé" with free-text entry. */
+const MODELES_PAR_MARQUE: Record<string, string[]> = {
+  Renault: ["Clio", "Captur", "Mégane", "Kadjar", "Twingo", "Scénic", "Talisman", "Zoe", "Austral"],
+  Peugeot: ["208", "2008", "308", "3008", "5008", "508", "108", "Partner"],
+  Citroën: ["C3", "C4", "C5 Aircross", "Berlingo", "C1", "C3 Aircross"],
+  Volkswagen: ["Golf", "Polo", "Tiguan", "Passat", "T-Roc", "T-Cross", "Touran"],
+  Audi: ["A1", "A3", "A4", "A6", "Q2", "Q3", "Q5"],
+  BMW: ["Série 1", "Série 2", "Série 3", "Série 5", "X1", "X3", "X5"],
+  "Mercedes-Benz": ["Classe A", "Classe B", "Classe C", "Classe E", "GLA", "GLC"],
+  Ford: ["Fiesta", "Focus", "Puma", "Kuga", "EcoSport"],
+  Opel: ["Corsa", "Astra", "Crossland", "Grandland", "Mokka"],
+  Toyota: ["Yaris", "Corolla", "C-HR", "RAV4", "Aygo"],
+  Nissan: ["Micra", "Juke", "Qashqai", "X-Trail"],
+  Fiat: ["500", "Panda", "Tipo", "500X"],
+  Dacia: ["Sandero", "Duster", "Spring", "Jogger"],
+  Seat: ["Ibiza", "Leon", "Arona", "Ateca"],
+  Skoda: ["Fabia", "Octavia", "Kamiq", "Karoq"],
+  Hyundai: ["i10", "i20", "i30", "Tucson", "Kona"],
+  Kia: ["Picanto", "Rio", "Ceed", "Sportage", "Niro"],
+  Volvo: ["XC40", "XC60", "V40", "V60"],
+  Mini: ["Cooper", "Countryman", "Clubman"],
+  "Land Rover": ["Range Rover Evoque", "Discovery Sport", "Defender"],
+  Mazda: ["2", "3", "CX-3", "CX-5"],
+  Honda: ["Civic", "CR-V", "Jazz", "HR-V"],
+  Suzuki: ["Swift", "Vitara", "S-Cross"],
+  Jeep: ["Renegade", "Compass", "Cherokee"],
+  "Alfa Romeo": ["Giulietta", "Giulia", "Stelvio"],
+  Porsche: ["911", "Cayenne", "Macan", "Panamera"],
+  "DS Automobiles": ["DS3", "DS4", "DS7"],
+};
+
+const AUTRE_MODELE = "Autre / non listé";
+
 interface Step1Props {
   value: Partial<VehicleInfo>;
   onChange: (patch: Partial<VehicleInfo>) => void;
 }
 
 export function Step1Vehicle({ value, onChange }: Step1Props) {
+  const modeles = value.marque ? MODELES_PAR_MARQUE[value.marque] : undefined;
+  const modeleSelectValue = !modeles
+    ? ""
+    : value.modele && modeles.includes(value.modele)
+      ? value.modele
+      : value.modele
+        ? AUTRE_MODELE
+        : "";
+
   return (
     <div className="flex flex-col gap-6">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -69,14 +112,36 @@ export function Step1Vehicle({ value, onChange }: Step1Props) {
           name="marque"
           options={MARQUES}
           value={value.marque ?? ""}
-          onChange={(e) => onChange({ marque: e.target.value })}
+          onChange={(e) => onChange({ marque: e.target.value, modele: "" })}
         />
-        <Input
-          label="Modèle"
-          name="modele"
-          value={value.modele ?? ""}
-          onChange={(e) => onChange({ modele: e.target.value })}
-        />
+        {modeles ? (
+          <div className="flex flex-col gap-4">
+            <Select
+              label="Modèle"
+              name="modele"
+              options={[...modeles.map((m) => ({ value: m, label: m })), { value: AUTRE_MODELE, label: AUTRE_MODELE }]}
+              value={modeleSelectValue}
+              onChange={(e) =>
+                onChange({ modele: e.target.value === AUTRE_MODELE ? "" : e.target.value })
+              }
+            />
+            {modeleSelectValue === AUTRE_MODELE && (
+              <Input
+                label="Précisez le modèle"
+                name="modele-autre"
+                value={value.modele ?? ""}
+                onChange={(e) => onChange({ modele: e.target.value })}
+              />
+            )}
+          </div>
+        ) : (
+          <Input
+            label="Modèle"
+            name="modele"
+            value={value.modele ?? ""}
+            onChange={(e) => onChange({ modele: e.target.value })}
+          />
+        )}
         <Select
           label="Année"
           name="annee"
@@ -85,10 +150,10 @@ export function Step1Vehicle({ value, onChange }: Step1Props) {
           onChange={(e) => onChange({ annee: Number(e.target.value) })}
         />
         <Input
-          label="Version / finition"
+          label="Version / finition (optionnel)"
           name="version"
           value={value.version ?? ""}
-          onChange={(e) => onChange({ version: e.target.value })}
+          onChange={(e) => onChange({ version: e.target.value || undefined })}
         />
         <Input
           label="Kilométrage"
@@ -98,11 +163,13 @@ export function Step1Vehicle({ value, onChange }: Step1Props) {
           onChange={(e) => onChange({ kilometrage: Number(e.target.value) })}
         />
         <Input
-          label="Puissance fiscale"
+          label="Puissance fiscale (optionnel)"
           name="puissanceFiscale"
           type="number"
           value={value.puissanceFiscale ?? ""}
-          onChange={(e) => onChange({ puissanceFiscale: Number(e.target.value) })}
+          onChange={(e) =>
+            onChange({ puissanceFiscale: e.target.value ? Number(e.target.value) : undefined })
+          }
         />
         <Select
           label="Nombre de portes"

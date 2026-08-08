@@ -14,11 +14,13 @@ export interface VehicleInfo {
   marque: string;
   modele: string;
   annee: number;
-  version: string;
+  /** Optional: the seller may not know the exact trim/finish. */
+  version?: string;
   kilometrage: number;
   carburant: Carburant;
   boite: Boite;
-  puissanceFiscale: number;
+  /** Optional: the seller may not have their carte grise to hand. */
+  puissanceFiscale?: number;
   nombrePortes: number;
 }
 

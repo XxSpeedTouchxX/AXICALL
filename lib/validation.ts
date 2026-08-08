@@ -11,11 +11,11 @@ export const vehicleInfoSchema = z.object({
     .int()
     .min(1980, "Année invalide")
     .max(currentYear, "L'année ne peut pas être dans le futur"),
-  version: z.string().min(1, "Version requise"),
+  version: z.string().optional(),
   kilometrage: z.number().int().min(0, "Le kilométrage ne peut pas être négatif"),
   carburant: z.enum(["essence", "diesel", "hybride", "electrique"]),
   boite: z.enum(["manuelle", "automatique"]),
-  puissanceFiscale: z.number().int().min(1, "Puissance fiscale invalide"),
+  puissanceFiscale: z.number().int().min(1, "Puissance fiscale invalide").optional(),
   nombrePortes: z
     .number()
     .int()

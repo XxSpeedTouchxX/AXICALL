@@ -9,7 +9,7 @@ describe("Step1Vehicle", () => {
     render(<Step1Vehicle value={{}} onChange={onChange} />);
     const user = userEvent.setup();
     await user.selectOptions(screen.getByLabelText("Marque"), "Renault");
-    expect(onChange).toHaveBeenCalledWith({ marque: "Renault" });
+    expect(onChange).toHaveBeenCalledWith({ marque: "Renault", modele: "" });
   });
 
   it("renders fuel type options as radio cards", () => {
