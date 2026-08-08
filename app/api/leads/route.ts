@@ -3,6 +3,7 @@ import { estimationFormSchema, contactFormSchema } from "@/lib/validation";
 import { scoreLead } from "@/lib/scoring";
 import { saveLead } from "@/lib/leads";
 import { CONSENT_TEXT } from "@/lib/company";
+import { notifyAgencyOfNewLead, confirmEstimationToProspect } from "@/lib/email";
 
 export async function POST(request: Request) {
   let body: any;
@@ -26,6 +27,7 @@ export async function POST(request: Request) {
         message: parsed.data.message,
       },
     });
+    await notifyAgencyOfNewLead(lead);
     return NextResponse.json({ id: lead.id });
   }
 
@@ -56,6 +58,9 @@ export async function POST(request: Request) {
     urgence,
     consentement: { texte: CONSENT_TEXT },
   });
+
+  await notifyAgencyOfNewLead(lead);
+  await confirmEstimationToProspect(lead);
 
   return NextResponse.json({ id: lead.id, score, urgence });
 }

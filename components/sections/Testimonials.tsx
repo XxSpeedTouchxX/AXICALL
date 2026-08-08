@@ -8,7 +8,10 @@ export function Testimonials({ preview = false }: { preview?: boolean }) {
   const items = preview ? TESTIMONIALS.slice(0, 2) : TESTIMONIALS;
   return (
     <section className="bg-white px-4 py-16">
-      <h2 className="mb-10 text-center text-2xl font-bold text-[var(--color-navy)]">Avis clients</h2>
+      <h2 className="mb-2 text-center text-2xl font-bold text-[var(--color-navy)]">Avis clients</h2>
+      <p className="mb-10 text-center text-xs text-[var(--color-gray-600)]">
+        Exemples illustratifs — en attente de vrais témoignages clients.
+      </p>
       <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((t) => (
           <blockquote key={t.name} className="rounded-lg border border-[var(--color-gray-200)] p-6">

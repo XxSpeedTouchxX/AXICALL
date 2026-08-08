@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CallBar } from "@/components/layout/CallBar";
 import { ExitIntentPopup } from "@/components/layout/ExitIntentPopup";
+import { CookieBanner } from "@/components/layout/CookieBanner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Footer />
         <CallBar />
         <ExitIntentPopup />
+        <CookieBanner />
       </body>
     </html>
   );
