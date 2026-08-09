@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { HeroVideo } from "./HeroVideo";
 
 export function Hero() {
   return (
@@ -23,16 +24,7 @@ export function Hero() {
           </div>
         </div>
         <div className="relative aspect-video overflow-hidden rounded-lg bg-black">
-          <video
-            className="h-full w-full object-cover"
-            src="/hero-video.mp4"
-            poster="/hero-car.jpg"
-            controls
-            preload="metadata"
-            playsInline
-          >
-            Votre navigateur ne prend pas en charge la lecture vidéo.
-          </video>
+          <HeroVideo />
         </div>
       </div>
     </section>
