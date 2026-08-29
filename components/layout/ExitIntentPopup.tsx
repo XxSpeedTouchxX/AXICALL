@@ -81,7 +81,7 @@ export function ExitIntentPopup() {
       aria-modal="true"
       aria-labelledby="exit-intent-title"
     >
-      <div ref={dialogRef} tabIndex={-1} className="max-w-md rounded-lg bg-white p-8 text-center shadow-xl">
+      <div ref={dialogRef} tabIndex={-1} className="max-w-md bg-white p-8 text-center shadow-xl">
         <h2 id="exit-intent-title" className="mb-3 text-xl font-bold text-[var(--color-navy)]">Avant de partir...</h2>
         <p className="mb-6 text-[var(--color-gray-600)]">
           Estimez gratuitement votre véhicule en 2 minutes, sans engagement.

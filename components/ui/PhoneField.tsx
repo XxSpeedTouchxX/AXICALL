@@ -1,5 +1,6 @@
 "use client";
 
+import { Phone } from "lucide-react";
 import { Input } from "./Input";
 import { Select } from "./Select";
 
@@ -41,6 +42,7 @@ export function PhoneField({ value, onChange }: PhoneFieldProps) {
         label="Téléphone"
         name="telephone"
         type="tel"
+        icon={Phone}
         value={telephone}
         onChange={(e) => onChange(e.target.value)}
       />

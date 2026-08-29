@@ -1,0 +1,299 @@
+.phoneWrap {
+  position: relative;
+  margin: 0 auto;
+  width: min(300px, 80vw);
+}
+.phoneWrap::before {
+  content: "";
+  position: absolute;
+  inset: -50px;
+  background: radial-gradient(circle, rgba(255, 74, 28, 0.14) 0%, transparent 68%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.phoneShell {
+  width: 100%;
+  aspect-ratio: 300 / 610;
+  background: linear-gradient(160deg, #4b4b4b 0%, #1c1c1c 38%, #000 78%);
+  border-radius: 46px;
+  padding: 12px;
+  position: relative;
+  box-shadow:
+    0 45px 80px -22px rgba(0, 0, 0, 0.55),
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.5) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+}
+.phoneShell::before {
+  content: "";
+  position: absolute;
+  right: -2.5px;
+  top: 24%;
+  width: 3px;
+  height: 10%;
+  background: linear-gradient(90deg, #000, #1a1a1a);
+  border-radius: 2px 0 0 2px;
+}
+.phoneShell::after {
+  content: "";
+  position: absolute;
+  left: -2.5px;
+  top: 15%;
+  width: 3px;
+  height: 6%;
+  background: linear-gradient(270deg, #000, #1a1a1a);
+  border-radius: 0 2px 2px 0;
+  box-shadow:
+    0 calc(6% + 10px) 0 0 #0a0a0a,
+    0 calc(-6% - 14px) 0 0 #0a0a0a;
+}
+
+.dynamicIsland {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 84px;
+  height: 23px;
+  background: #050505;
+  border-radius: 16px;
+  z-index: 6;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+.dynamicIsland::after {
+  content: "";
+  position: absolute;
+  right: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #3a5a8a, #0a0a0a 70%);
+}
+
+.homeIndicator {
+  position: absolute;
+  bottom: 9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 104px;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(10, 10, 10, 0.2);
+  z-index: 6;
+}
+
+.screen {
+  width: 100%;
+  height: 100%;
+  background: var(--bone);
+  border-radius: 34px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  color: var(--ink);
+  position: relative;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset;
+}
+.screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  pointer-events: none;
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 22%);
+}
+
+.screenTopbar {
+  padding: 40px 22px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--line);
+}
+.brandmark {
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.brandmark small {
+  display: block;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.screenBody {
+  padding: 16px 22px 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.progress {
+  height: 3px;
+  background: var(--line);
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.progressFill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.35s ease;
+}
+.stepLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.stepTitle {
+  font-weight: 900;
+  font-size: 16.5px;
+  margin: 8px 0 12px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.stepPanel {
+  display: none;
+  flex-direction: column;
+  gap: 9px;
+  flex: 1;
+}
+.stepPanel.active {
+  display: flex;
+}
+.field {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--bone);
+  padding: 11px 13px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--ink);
+}
+.field:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.plateField {
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.18em;
+  font-weight: 900;
+  font-size: 15px;
+}
+.hint {
+  font-size: 10.5px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.chip {
+  border: 1px solid var(--line);
+  padding: 8px 11px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--bone);
+}
+.chip.sel {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--black);
+}
+.consent {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 9.5px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.consent input {
+  margin-top: 2px;
+}
+.stepNav {
+  margin-top: auto;
+  display: flex;
+  gap: 8px;
+  padding-top: 12px;
+}
+.btnNext {
+  flex: 1;
+  background: var(--black);
+  color: var(--bone);
+  border: none;
+  padding: 12px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.btnBack {
+  background: transparent;
+  border: 1px solid var(--line);
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+}
+.successIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px auto 4px;
+  color: var(--accent);
+  font-weight: 900;
+}
+.methodTabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+.mtab {
+  flex: 1;
+  border: 1px solid var(--line);
+  background: transparent;
+  padding: 8px 4px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--muted);
+}
+.mtab.on {
+  background: var(--black);
+  color: var(--bone);
+  border-color: var(--black);
+}
+.lastStepNote {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2px;
+}

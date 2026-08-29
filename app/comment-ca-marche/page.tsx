@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 
 export const metadata: Metadata = {
@@ -9,10 +10,12 @@ export const metadata: Metadata = {
 export default function CommentCaMarchePage() {
   return (
     <main>
-      <h1 className="pt-12 text-center text-3xl font-bold text-[var(--color-navy)]">
-        Comment ça marche
-      </h1>
-      <HowItWorks />
+      <PageHeader
+        eyebrow="Le processus"
+        title="Comment ça marche"
+        subtitle="De l'estimation à la vente, un parcours simple en 4 étapes."
+      />
+      <HowItWorks hideHeading />
     </main>
   );
 }

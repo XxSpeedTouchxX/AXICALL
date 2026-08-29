@@ -51,7 +51,7 @@ export function ResultView() {
       <h1 className="mb-4 text-3xl font-bold text-[var(--color-navy)]">
         Votre demande d&apos;estimation a bien été enregistrée.
       </h1>
-      <div className="mb-6 rounded-lg border border-[var(--color-gray-200)] bg-white p-6 text-left">
+      <div className="mb-6 border-l-[3px] border-[var(--color-orange)] bg-white p-6 text-left">
         <p className="font-semibold text-[var(--color-navy)]">
           {result.vehicule.marque} {result.vehicule.modele} ({result.vehicule.annee})
         </p>

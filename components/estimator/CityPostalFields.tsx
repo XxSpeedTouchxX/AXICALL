@@ -96,7 +96,7 @@ export function CityPostalFields({ ville, codePostal, onChange }: CityPostalFiel
           onBlur={() => setTimeout(() => setActiveField(null), 150)}
         />
         {activeField === "ville" && villeSuggestions.length > 0 && (
-          <ul className="absolute z-10 mt-1 w-full rounded-md border border-[var(--color-gray-200)] bg-white shadow-lg">
+          <ul className="absolute z-10 mt-1 w-full border border-[var(--color-gray-200)] bg-white shadow-lg">
             {villeSuggestions.map((commune) => (
               <li key={`${commune.nom}-${commune.codesPostaux[0]}`}>
                 <button
@@ -123,7 +123,7 @@ export function CityPostalFields({ ville, codePostal, onChange }: CityPostalFiel
           onBlur={() => setTimeout(() => setActiveField(null), 150)}
         />
         {activeField === "codePostal" && cpSuggestions.length > 0 && (
-          <ul className="absolute z-10 mt-1 w-full rounded-md border border-[var(--color-gray-200)] bg-white shadow-lg">
+          <ul className="absolute z-10 mt-1 w-full border border-[var(--color-gray-200)] bg-white shadow-lg">
             {cpSuggestions.map((commune) => (
               <li key={commune.nom}>
                 <button

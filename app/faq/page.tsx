@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { FAQAccordion } from "@/components/sections/FAQAccordion";
 
 export const metadata: Metadata = {
@@ -8,11 +9,11 @@ export const metadata: Metadata = {
 
 export default function FAQPage() {
   return (
-    <main className="px-4 py-12">
-      <h1 className="mb-10 text-center text-3xl font-bold text-[var(--color-navy)]">
-        Questions fréquentes
-      </h1>
-      <FAQAccordion />
+    <main>
+      <PageHeader eyebrow="Questions" title="Questions fréquentes" />
+      <div className="px-4 py-16">
+        <FAQAccordion />
+      </div>
     </main>
   );
 }

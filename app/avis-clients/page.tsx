@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { Testimonials } from "@/components/sections/Testimonials";
 
 export const metadata: Metadata = {
@@ -9,8 +10,12 @@ export const metadata: Metadata = {
 export default function AvisClientsPage() {
   return (
     <main>
-      <h1 className="pt-12 text-center text-3xl font-bold text-[var(--color-navy)]">Avis clients</h1>
-      <Testimonials />
+      <PageHeader
+        eyebrow="Témoignages"
+        title="Avis clients"
+        subtitle="Ce que nos clients disent de leur expérience."
+      />
+      <Testimonials hideHeading />
     </main>
   );
 }

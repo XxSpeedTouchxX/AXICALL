@@ -1,15 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --color-navy: #0a1a35;
-  --color-navy-light: #12274d;
-  --color-orange: #ff6a1a;
-  --color-orange-dark: #e05a10;
-  --color-gray-50: #f7f8fa;
-  --color-gray-200: #e2e5eb;
-  --color-gray-600: #5b6270;
+  --background: #f5f1ea;
+  --foreground: #1a1a1a;
+
+  /* AXICALL brand tokens (see AXICALL-Design-System.md) */
+  --black: #0a0a0a;
+  --ink: #1a1a1a;
+  --bone: #f5f1ea;
+  --paper: #ede6d9;
+  --line: #d6cdbd;
+  --accent: #ff4a1c;
+  --accent-dark: #e0390f;
+  --muted: #6b6356;
+
+  /* Legacy token names kept so every existing component picks up the new
+     palette automatically — see the design-system-adoption note below. */
+  --color-navy: var(--black);
+  --color-navy-light: var(--ink);
+  --color-orange: var(--accent);
+  --color-orange-dark: var(--accent-dark);
+  --color-gray-50: var(--paper);
+  --color-gray-200: var(--line);
+  --color-gray-600: var(--muted);
 
   /* Single source of truth for the site's z-index scale — see lib/zIndex.ts
      for the TypeScript-side constants that reference these same layers. */
@@ -22,19 +35,38 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-archivo);
 }
 
 /*
- * MonEstimationAuto is a light-themed site by design (navy/white/gray/orange).
- * The automatic dark-mode override that create-next-app generates here was
- * removed intentionally: it swapped body text/background for near-white-on-
- * near-black on devices with a dark system preference, while every section
- * and form control on this site assumes a light background — the result was
- * invisible (light-on-light) text in form fields for dark-mode users.
+ * MonEstimationAuto follows the AXICALL design system: warm off-white/beige
+ * pages (--bone/--paper), near-black dark sections (--black/--ink), and a
+ * single orange-red accent (--accent) reserved for numerals, eyebrow labels,
+ * and emphasis — never body text. The automatic dark-mode override that
+ * create-next-app generates here was removed intentionally: it swapped body
+ * text/background for near-white-on-near-black on devices with a dark system
+ * preference, while every section and form control on this site assumes a
+ * light background — the result was invisible (light-on-light) text in form
+ * fields for dark-mode users.
  */
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Mono, uppercase, wide-tracked section label — "— 01 / SECTION NAME" */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display), var(--font-sans), Arial, Helvetica, sans-serif;
+  letter-spacing: -0.03em;
 }

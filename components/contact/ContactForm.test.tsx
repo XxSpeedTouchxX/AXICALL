@@ -24,6 +24,6 @@ describe("ContactForm", () => {
     await user.type(screen.getByLabelText("Téléphone"), "0612345678");
     await user.type(screen.getByLabelText("Message"), "Bonjour, une question.");
     await user.click(screen.getByRole("button", { name: /envoyer/i }));
-    expect(await screen.findByText(/message bien envoyé/i)).toBeInTheDocument();
+    expect(await screen.findByText(/message a bien été envoyé/i)).toBeInTheDocument();
   });
 });
