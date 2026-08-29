@@ -202,6 +202,7 @@ export function Step1Vehicle({ value, onChange }: Step1Props) {
         <Input
           label="Version / finition (optionnel)"
           name="version"
+          placeholder="Ex : GT Line, Zen, Business…"
           value={value.version ?? ""}
           onChange={(e) => onChange({ version: e.target.value || undefined })}
         />
@@ -209,6 +210,10 @@ export function Step1Vehicle({ value, onChange }: Step1Props) {
           label="Kilométrage"
           name="kilometrage"
           type="number"
+          inputMode="numeric"
+          min={0}
+          placeholder="Ex : 85000"
+          suffix="km"
           value={value.kilometrage ?? ""}
           onChange={(e) =>
             onChange({ kilometrage: e.target.value ? Number(e.target.value) : undefined })
@@ -218,6 +223,11 @@ export function Step1Vehicle({ value, onChange }: Step1Props) {
           label="Puissance fiscale (optionnel)"
           name="puissanceFiscale"
           type="number"
+          inputMode="numeric"
+          min={0}
+          placeholder="Ex : 6"
+          suffix="CV"
+          hint="Indiquée sur la carte grise (case P.6)."
           value={value.puissanceFiscale ?? ""}
           onChange={(e) =>
             onChange({ puissanceFiscale: e.target.value ? Number(e.target.value) : undefined })

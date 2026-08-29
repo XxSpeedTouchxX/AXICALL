@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function MerciPage() {
   return (
-    <main className="bg-[var(--color-gray-50)] px-4 py-16">
+    <main className="bg-[var(--paper)] px-4 py-16">
       <ResultView />
     </main>
   );

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { StepForm } from "@/components/estimator/StepForm";
 
 export const metadata: Metadata = {
@@ -9,11 +10,15 @@ export const metadata: Metadata = {
 
 export default function EstimationPage() {
   return (
-    <main className="bg-[var(--color-gray-50)] px-4 py-12">
-      <h1 className="mb-8 text-center text-3xl font-bold text-[var(--color-navy)]">
-        Estimez votre véhicule gratuitement
-      </h1>
-      <StepForm />
+    <main>
+      <PageHeader
+        eyebrow="Estimation gratuite"
+        title="Estimez votre véhicule"
+        subtitle="Quelques minutes suffisent. Un expert vous rappelle sous 24h avec une estimation personnalisée."
+      />
+      <div className="bg-[var(--paper)] px-4 py-14">
+        <StepForm />
+      </div>
     </main>
   );
 }

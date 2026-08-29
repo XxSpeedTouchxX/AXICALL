@@ -24,7 +24,7 @@ interface Step2Props {
 
 export function Step2Condition({ value, onChange }: Step2Props) {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-7">
       <RadioGroupField
         legend="État général"
         name="etatGeneral"
@@ -32,13 +32,15 @@ export function Step2Condition({ value, onChange }: Step2Props) {
         value={value.etatGeneral}
         onChange={(etatGeneral) => onChange({ etatGeneral })}
         columns="grid-cols-2 sm:grid-cols-4"
+        hint="Carrosserie, intérieur et mécanique, dans l'ensemble."
       />
 
       <BooleanRadioGroup
-        legend="Accident"
+        legend="Le véhicule a-t-il déjà été accidenté ?"
         name="accident"
         value={value.accident}
         onChange={(accident) => onChange({ accident })}
+        hint="Même un choc réparé — cela reste visible à l'expertise."
       />
 
       <RadioGroupField
@@ -54,6 +56,10 @@ export function Step2Condition({ value, onChange }: Step2Props) {
         label="Nombre de propriétaires"
         name="nombreProprietaires"
         type="number"
+        inputMode="numeric"
+        min={1}
+        placeholder="Ex : 2"
+        hint="Vous compris, tel qu'indiqué sur la carte grise."
         value={value.nombreProprietaires ?? ""}
         onChange={(e) =>
           onChange({ nombreProprietaires: e.target.value ? Number(e.target.value) : undefined })
@@ -65,6 +71,7 @@ export function Step2Condition({ value, onChange }: Step2Props) {
         name="carnetEntretien"
         value={value.carnetEntretien}
         onChange={(carnetEntretien) => onChange({ carnetEntretien })}
+        hint="Un historique d'entretien complet valorise nettement le véhicule."
       />
     </div>
   );

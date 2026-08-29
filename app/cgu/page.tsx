@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { LegalPage } from "@/components/layout/LegalPage";
 import { COMPANY } from "@/lib/company";
 
 export const metadata: Metadata = {
@@ -8,14 +9,10 @@ export const metadata: Metadata = {
 
 export default function CGUPage() {
   return (
-    <main className="mx-auto max-w-3xl px-4 py-12 text-[var(--color-gray-600)]">
-      <h1 className="mb-8 text-3xl font-bold text-[var(--color-navy)]">
-        Conditions générales d&apos;utilisation
-      </h1>
-
-      <div className="flex flex-col gap-6">
+    <LegalPage eyebrow="Conditions" title="Conditions générales d'utilisation">
+      <>
         <section>
-          <h2 className="mb-2 font-semibold text-[var(--color-navy)]">Objet</h2>
+          <h2>Objet</h2>
           <p>
             Les présentes conditions générales d&apos;utilisation régissent l&apos;accès et
             l&apos;utilisation du site {COMPANY.publicName}, édité par {COMPANY.ownerName}
@@ -24,7 +21,7 @@ export default function CGUPage() {
         </section>
 
         <section>
-          <h2 className="mb-2 font-semibold text-[var(--color-navy)]">Service proposé</h2>
+          <h2>Service proposé</h2>
           <p>
             {COMPANY.publicName} propose un service gratuit d&apos;estimation de véhicules
             d&apos;occasion et de mise en relation avec des professionnels de l&apos;automobile.
@@ -34,7 +31,7 @@ export default function CGUPage() {
         </section>
 
         <section>
-          <h2 className="mb-2 font-semibold text-[var(--color-navy)]">
+          <h2>
             Absence d&apos;engagement
           </h2>
           <p>
@@ -45,7 +42,7 @@ export default function CGUPage() {
         </section>
 
         <section>
-          <h2 className="mb-2 font-semibold text-[var(--color-navy)]">Responsabilité</h2>
+          <h2>Responsabilité</h2>
           <p>
             {COMPANY.legalName} s&apos;efforce d&apos;assurer l&apos;exactitude des informations
             diffusées sur le site, sans garantir l&apos;absence d&apos;erreur. {COMPANY.legalName}
@@ -55,7 +52,7 @@ export default function CGUPage() {
         </section>
 
         <section>
-          <h2 className="mb-2 font-semibold text-[var(--color-navy)]">Modification des CGU</h2>
+          <h2>Modification des CGU</h2>
           <p>
             {COMPANY.legalName} se réserve le droit de modifier les présentes conditions générales
             d&apos;utilisation à tout moment. Les utilisateurs sont invités à les consulter
@@ -64,13 +61,13 @@ export default function CGUPage() {
         </section>
 
         <section>
-          <h2 className="mb-2 font-semibold text-[var(--color-navy)]">Contact</h2>
+          <h2>Contact</h2>
           <p>
             Pour toute question relative aux présentes CGU, contactez-nous à {COMPANY.email} ou au{" "}
             {COMPANY.phone}.
           </p>
         </section>
-      </div>
-    </main>
+      </>
+    </LegalPage>
   );
 }

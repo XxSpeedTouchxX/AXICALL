@@ -57,7 +57,7 @@ test.describe("Golden path: home → estimation → result", () => {
 
     await expect(page).toHaveURL(/\/estimation\/merci$/);
     await expect(
-      page.getByRole("heading", { name: /votre demande d.estimation a bien été enregistrée/i })
+      page.getByRole("heading", { name: /votre demande est enregistrée/i })
     ).toBeVisible();
     await expect(page.getByText(/Clio/)).toBeVisible();
   });
@@ -67,6 +67,7 @@ test.describe("Golden path: home → estimation → result", () => {
     await dismissCookieBanner(page);
     await page.getByRole("button", { name: "Suivant" }).click();
     await expect(page.getByLabel("Marque")).toBeVisible();
-    await expect(page.getByText(/merci de compléter/i)).toBeVisible();
+    // The error names the missing fields rather than showing a generic message.
+    await expect(page.getByText(/il manque la marque/i)).toBeVisible();
   });
 });

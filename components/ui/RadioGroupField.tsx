@@ -13,6 +13,7 @@ interface RadioGroupFieldProps<T extends string> {
   onChange: (value: T) => void;
   /** Tailwind grid-cols classes for the option layout — varies per group size. */
   columns?: string;
+  hint?: string;
 }
 
 export function RadioGroupField<T extends string>({
@@ -22,11 +23,13 @@ export function RadioGroupField<T extends string>({
   value,
   onChange,
   columns = "grid-cols-2",
+  hint,
 }: RadioGroupFieldProps<T>) {
   return (
-    <fieldset className="border-0 p-0 m-0">
-      <legend className="mb-2 text-sm font-medium text-[var(--color-navy)]">{legend}</legend>
-      <div className={`grid gap-3 ${columns}`}>
+    <fieldset className="m-0 border-0 p-0">
+      <legend className="mb-1 text-sm font-medium text-[var(--ink)]">{legend}</legend>
+      {hint && <p className="mb-2.5 text-xs text-[var(--muted)]">{hint}</p>}
+      <div className={`grid gap-2.5 ${hint ? "" : "mt-2.5"} ${columns}`}>
         {options.map((opt) => (
           <RadioCard
             key={opt.value}
@@ -52,10 +55,11 @@ interface BooleanRadioGroupProps {
   name: string;
   value: boolean | undefined;
   onChange: (value: boolean) => void;
+  hint?: string;
 }
 
 /** A yes/no RadioGroupField backed by a real boolean, not the "oui"/"non" strings. */
-export function BooleanRadioGroup({ legend, name, value, onChange }: BooleanRadioGroupProps) {
+export function BooleanRadioGroup({ legend, name, value, onChange, hint }: BooleanRadioGroupProps) {
   return (
     <RadioGroupField
       legend={legend}
@@ -63,6 +67,7 @@ export function BooleanRadioGroup({ legend, name, value, onChange }: BooleanRadi
       options={OUI_NON}
       value={value === undefined ? undefined : value ? "oui" : "non"}
       onChange={(v) => onChange(v === "oui")}
+      hint={hint}
     />
   );
 }

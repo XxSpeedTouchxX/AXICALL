@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { MapPin } from "lucide-react";
 import { Input } from "@/components/ui/Input";
 
 interface Commune {
@@ -88,6 +89,8 @@ export function CityPostalFields({ ville, codePostal, onChange }: CityPostalFiel
       <div className="relative">
         <Input
           label="Ville"
+          icon={MapPin}
+          placeholder="Commencez à taper…"
           name="ville"
           value={ville}
           autoComplete="off"
@@ -96,12 +99,12 @@ export function CityPostalFields({ ville, codePostal, onChange }: CityPostalFiel
           onBlur={() => setTimeout(() => setActiveField(null), 150)}
         />
         {activeField === "ville" && villeSuggestions.length > 0 && (
-          <ul className="absolute z-10 mt-1 w-full border border-[var(--color-gray-200)] bg-white shadow-lg">
+          <ul className="absolute z-20 mt-1 max-h-56 w-full overflow-y-auto border border-[var(--line)] bg-white shadow-xl">
             {villeSuggestions.map((commune) => (
               <li key={`${commune.nom}-${commune.codesPostaux[0]}`}>
                 <button
                   type="button"
-                  className="block w-full px-3 py-2 text-left text-sm text-[var(--color-navy)] hover:bg-[var(--color-gray-50)]"
+                  className="block w-full px-3 py-2.5 text-left text-sm text-[var(--ink)] transition-colors hover:bg-[var(--accent)]/10"
                   onMouseDown={() => selectVilleSuggestion(commune)}
                 >
                   {commune.nom} ({commune.codesPostaux[0]})
@@ -123,12 +126,12 @@ export function CityPostalFields({ ville, codePostal, onChange }: CityPostalFiel
           onBlur={() => setTimeout(() => setActiveField(null), 150)}
         />
         {activeField === "codePostal" && cpSuggestions.length > 0 && (
-          <ul className="absolute z-10 mt-1 w-full border border-[var(--color-gray-200)] bg-white shadow-lg">
+          <ul className="absolute z-20 mt-1 max-h-56 w-full overflow-y-auto border border-[var(--line)] bg-white shadow-xl">
             {cpSuggestions.map((commune) => (
               <li key={commune.nom}>
                 <button
                   type="button"
-                  className="block w-full px-3 py-2 text-left text-sm text-[var(--color-navy)] hover:bg-[var(--color-gray-50)]"
+                  className="block w-full px-3 py-2.5 text-left text-sm text-[var(--ink)] transition-colors hover:bg-[var(--accent)]/10"
                   onMouseDown={() => selectCpSuggestion(commune)}
                 >
                   {commune.nom}

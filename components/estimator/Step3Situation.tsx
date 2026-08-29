@@ -24,7 +24,7 @@ interface Step3Props {
 
 export function Step3Situation({ value, onChange }: Step3Props) {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-7">
       <RadioGroupField
         legend="Pourquoi souhaitez-vous vendre votre véhicule ?"
         name="motifVente"
@@ -32,6 +32,7 @@ export function Step3Situation({ value, onChange }: Step3Props) {
         value={value.motifVente}
         onChange={(motifVente) => onChange({ motifVente })}
         columns="grid-cols-1 sm:grid-cols-2"
+        hint="Cela nous aide à vous orienter vers la bonne solution."
       />
 
       <RadioGroupField
@@ -41,6 +42,7 @@ export function Step3Situation({ value, onChange }: Step3Props) {
         value={value.delaiVente}
         onChange={(delaiVente) => onChange({ delaiVente })}
         columns="grid-cols-3"
+        hint="Aucun engagement — vous restez libre de changer d'avis."
       />
     </div>
   );
