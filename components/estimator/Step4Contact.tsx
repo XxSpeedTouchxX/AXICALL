@@ -6,7 +6,7 @@ import type { ContactInfo } from "@/types/vehicle";
 import { Input } from "@/components/ui/Input";
 import { PhoneField } from "@/components/ui/PhoneField";
 import { CityPostalFields } from "./CityPostalFields";
-import { CONSENT_TEXT } from "@/lib/company";
+import { CONSENT_TEXT, CONSENT_DURATION_MONTHS } from "@/lib/company";
 
 interface Step4Props {
   value: Partial<ContactInfo>;
@@ -15,6 +15,7 @@ interface Step4Props {
 
 export function Step4Contact({ value, onChange }: Step4Props) {
   const consented = value.consentement === true;
+  const cguAccepted = value.cguAcceptees === true;
 
   return (
     <div className="flex flex-col gap-5">
@@ -55,11 +56,13 @@ export function Step4Contact({ value, onChange }: Step4Props) {
         />
       </div>
 
+      {/* Two separate checkboxes: the consent specification forbids bundling
+          phone consent with acceptance of the terms. Both start unchecked. */}
       <label
         className={`flex cursor-pointer items-start gap-3 border-l-[3px] p-4 text-sm transition-colors ${
           consented
-            ? "border-[var(--accent)] bg-[var(--accent)]/[0.07]"
-            : "border-[var(--line)] bg-[var(--paper)]/60 hover:border-[var(--muted)]"
+            ? "border-accent bg-accent/[0.07]"
+            : "border-line bg-paper/60 hover:border-muted"
         }`}
       >
         <input
@@ -68,14 +71,37 @@ export function Step4Contact({ value, onChange }: Step4Props) {
           onChange={(e) => onChange({ consentement: e.target.checked })}
           className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--accent)]"
         />
-        <span className="leading-relaxed text-[var(--muted)]">{CONSENT_TEXT}</span>
+        <span className="leading-relaxed text-muted">{CONSENT_TEXT}</span>
       </label>
 
-      <p className="text-xs text-[var(--muted)]">
-        En savoir plus dans notre{" "}
+      <label
+        className={`flex cursor-pointer items-start gap-3 border-l-[3px] p-4 text-sm transition-colors ${
+          cguAccepted
+            ? "border-accent bg-accent/[0.07]"
+            : "border-line bg-paper/60 hover:border-muted"
+        }`}
+      >
+        <input
+          type="checkbox"
+          checked={cguAccepted}
+          onChange={(e) => onChange({ cguAcceptees: e.target.checked })}
+          className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--accent)]"
+        />
+        <span className="leading-relaxed text-muted">
+          J&apos;ai lu et j&apos;accepte les{" "}
+          <Link href="/cgu" className="underline transition-colors hover:text-ink">
+            conditions générales d&apos;utilisation
+          </Link>{" "}
+          du simulateur.
+        </span>
+      </label>
+
+      <p className="text-xs text-muted">
+        Consentement valable {CONSENT_DURATION_MONTHS} mois maximum, retirable à tout moment. En
+        savoir plus dans notre{" "}
         <Link
           href="/politique-de-confidentialite"
-          className="underline transition-colors hover:text-[var(--ink)]"
+          className="underline transition-colors hover:text-ink"
         >
           politique de confidentialité
         </Link>

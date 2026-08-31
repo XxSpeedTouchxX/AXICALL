@@ -45,6 +45,7 @@ export interface ContactInfo {
   ville: string;
   codePostal: string;
   consentement: boolean;
+  cguAcceptees: boolean;
 }
 
 export interface EstimationFormData {

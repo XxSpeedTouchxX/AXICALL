@@ -41,6 +41,7 @@ const FIELD_LABELS: Record<string, string> = {
   ville: "votre ville",
   codePostal: "votre code postal",
   consentement: "votre accord pour être recontacté",
+  cguAcceptees: "l'acceptation des CGU",
 };
 
 function describeMissing(paths: string[]): string {

@@ -51,7 +51,10 @@ test.describe("Golden path: home → estimation → result", () => {
     await page.getByLabel("Email", { exact: true }).fill(`e2e-${Date.now()}@example.com`);
     await page.getByLabel("Ville", { exact: true }).fill("Lyon");
     await page.getByLabel("Code postal", { exact: true }).fill("69000");
-    await page.getByRole("checkbox").check();
+    // Two separate checkboxes: phone consent and acceptance of the terms.
+    for (const box of await page.getByRole("checkbox").all()) {
+      await box.check();
+    }
 
     await page.getByRole("button", { name: "Obtenir mon estimation" }).click();
 

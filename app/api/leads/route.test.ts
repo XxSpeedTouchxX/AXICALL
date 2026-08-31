@@ -37,6 +37,7 @@ function validEstimationPayload() {
       ville: "Lyon",
       codePostal: "69000",
       consentement: true,
+      cguAcceptees: true,
     },
   };
 }

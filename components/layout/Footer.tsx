@@ -14,8 +14,9 @@ const NAV_LINKS = [
 
 const LEGAL_LINKS = [
   { href: "/mentions-legales", label: "Mentions légales" },
-  { href: "/politique-de-confidentialite", label: "Politique de confidentialité" },
+  { href: "/politique-de-confidentialite", label: "Confidentialité" },
   { href: "/cgu", label: "CGU" },
+  { href: "/retrait-consentement", label: "Retrait consentement" },
 ];
 
 const year = new Date().getFullYear();

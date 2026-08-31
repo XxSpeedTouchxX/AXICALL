@@ -61,7 +61,10 @@ async function fillStep4(user: ReturnType<typeof userEvent.setup>) {
   await user.type(screen.getByLabelText("Email"), "marie@example.com");
   await user.type(screen.getByLabelText("Ville"), "Lyon");
   await user.type(screen.getByLabelText("Code postal"), "69000");
-  await user.click(screen.getByRole("checkbox"));
+  // Two separate checkboxes: phone consent and acceptance of the terms.
+  for (const box of screen.getAllByRole("checkbox")) {
+    await user.click(box);
+  }
 }
 
 describe("StepForm", () => {

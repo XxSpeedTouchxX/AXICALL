@@ -36,6 +36,7 @@ function buildForm(overrides: Partial<EstimationFormData> = {}): EstimationFormD
       ville: "Lyon",
       codePostal: "69000",
       consentement: true,
+      cguAcceptees: true,
     },
     ...overrides,
   };

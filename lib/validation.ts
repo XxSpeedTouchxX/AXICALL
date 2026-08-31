@@ -54,6 +54,11 @@ export const contactInfoSchema = z.object({
   consentement: z.literal(true, {
     errorMap: () => ({ message: "Le consentement est obligatoire" }),
   }),
+  // Kept separate from `consentement` on purpose: the consent specification
+  // forbids bundling phone consent with acceptance of the terms.
+  cguAcceptees: z.literal(true, {
+    errorMap: () => ({ message: "L'acceptation des CGU est obligatoire" }),
+  }),
 });
 
 export const estimationFormSchema = z.object({

@@ -65,6 +65,7 @@ describe("contactInfoSchema", () => {
       ville: "Lyon",
       codePostal: "69000",
       consentement: true,
+      cguAcceptees: true,
     });
     expect(result.success).toBe(true);
   });
@@ -78,6 +79,7 @@ describe("contactInfoSchema", () => {
       ville: "Lyon",
       codePostal: "69000",
       consentement: true,
+      cguAcceptees: true,
     });
     expect(result.success).toBe(false);
   });
@@ -91,6 +93,7 @@ describe("contactInfoSchema", () => {
       ville: "Lyon",
       codePostal: "69000",
       consentement: true,
+      cguAcceptees: true,
     });
     expect(result.success).toBe(true);
   });
@@ -104,6 +107,23 @@ describe("contactInfoSchema", () => {
       ville: "Lyon",
       codePostal: "69000",
       consentement: false,
+      cguAcceptees: true,
+    });
+    expect(result.success).toBe(false);
+  });
+
+  // The consent specification requires phone consent and acceptance of the
+  // terms to be two separate, independently required choices.
+  it("rejects when the CGU are not accepted, even with phone consent given", () => {
+    const result = contactInfoSchema.safeParse({
+      nom: "Dupont",
+      prenom: "Marie",
+      telephone: "0612345678",
+      email: "marie@example.com",
+      ville: "Lyon",
+      codePostal: "69000",
+      consentement: true,
+      cguAcceptees: false,
     });
     expect(result.success).toBe(false);
   });
@@ -117,6 +137,7 @@ describe("contactInfoSchema", () => {
       ville: "Lyon",
       codePostal: "69000",
       consentement: true,
+      cguAcceptees: true,
     });
     expect(result.success).toBe(false);
   });
@@ -216,6 +237,7 @@ describe("estimationFormSchema", () => {
         ville: "Lyon",
         codePostal: "69000",
         consentement: true,
+        cguAcceptees: true,
       },
     });
     expect(result.success).toBe(true);
