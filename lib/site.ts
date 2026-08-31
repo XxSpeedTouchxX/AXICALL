@@ -5,5 +5,5 @@
  * subdomain. No trailing slash.
  */
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimez-mon-auto.fr"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://estimer-mon-auto.fr"
 ).replace(/\/$/, "");
