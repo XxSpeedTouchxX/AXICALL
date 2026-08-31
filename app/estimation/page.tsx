@@ -3,6 +3,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { StepForm } from "@/components/estimator/StepForm";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/estimation" },
   title: "Estimation gratuite de véhicule | MonEstimationAuto",
   description:
     "Estimez gratuitement la valeur de votre véhicule en quelques minutes et recevez le rappel d'un expert.",

@@ -3,6 +3,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/comment-ca-marche" },
   title: "Comment ça marche | MonEstimationAuto",
   description: "Découvrez les 4 étapes pour estimer et vendre votre véhicule rapidement.",
 };

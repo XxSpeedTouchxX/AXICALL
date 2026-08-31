@@ -12,6 +12,14 @@ const NAV_LINKS = [
   { href: "/contact", label: "Contact" },
 ];
 
+const GUIDE_LINKS = [
+  { href: "/vendre-sa-voiture", label: "Vendre sa voiture" },
+  { href: "/combien-vaut-ma-voiture", label: "Combien vaut ma voiture" },
+  { href: "/depot-vente", label: "Le dépôt-vente" },
+  { href: "/reprise-ou-depot-vente", label: "Reprise ou dépôt-vente" },
+  { href: "/notre-methode", label: "Notre méthode" },
+];
+
 const LEGAL_LINKS = [
   { href: "/mentions-legales", label: "Mentions légales" },
   { href: "/politique-de-confidentialite", label: "Confidentialité" },
@@ -33,7 +41,7 @@ export function Footer() {
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--accent)]/60 to-transparent" />
 
       <Reveal className="relative px-4 pt-16 pb-8">
-        <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr]">
           <div>
             <div className="mb-3 flex items-center gap-2">
               <Image src="/logo-icon.png" alt="" width={36} height={24} className="h-8 w-auto" />
@@ -54,6 +62,22 @@ export function Footer() {
                   >
                     {link.label}
                     <ArrowUpRight className="h-3 w-3 -translate-x-1 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-[var(--bone)]/40">Guides</p>
+            <ul className="flex flex-col gap-2.5">
+              {GUIDE_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-[var(--bone)]/70 transition-colors hover:text-[var(--bone)]"
+                  >
+                    {link.label}
                   </Link>
                 </li>
               ))}

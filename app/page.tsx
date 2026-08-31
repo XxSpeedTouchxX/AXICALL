@@ -7,6 +7,7 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { COMPANY } from "@/lib/company";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/" },
   title: "Estimation voiture gratuite et rachat rapide | MonEstimationAuto",
   description:
     "Estimez gratuitement votre véhicule, recevez le rappel d'un expert et vendez votre voiture rapidement grâce à notre réseau de professionnels automobiles.",

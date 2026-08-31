@@ -6,6 +6,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { COMPANY } from "@/lib/company";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact | MonEstimationAuto",
   description: "Contactez notre équipe pour toute question sur l'estimation ou la vente de votre véhicule.",
 };

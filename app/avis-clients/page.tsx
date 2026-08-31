@@ -3,6 +3,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Testimonials } from "@/components/sections/Testimonials";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/avis-clients" },
   title: "Avis clients | MonEstimationAuto",
   description: "Découvrez les témoignages de nos clients ayant estimé et vendu leur véhicule.",
 };
