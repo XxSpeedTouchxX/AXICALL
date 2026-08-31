@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CallBar } from "@/components/layout/CallBar";
 import { ExitIntentPopup } from "@/components/layout/ExitIntentPopup";
 import { CookieBanner } from "@/components/layout/CookieBanner";
+import { SITE_URL } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +26,7 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.monestimationauto.fr"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "MonEstimationAuto — Estimation et rachat de véhicule",
     template: "%s",

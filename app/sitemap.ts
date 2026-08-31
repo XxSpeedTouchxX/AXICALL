@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
 
-const BASE_URL = "https://www.monestimationauto.fr";
+
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Indexable pages only. The legal pages and /estimation/merci are marked
@@ -23,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/contact", priority: 0.5 },
   ];
   return routes.map(({ path, priority }) => ({
-    url: `${BASE_URL}${path}`,
+    url: `${SITE_URL}${path}`,
     lastModified: new Date(),
     priority,
   }));
