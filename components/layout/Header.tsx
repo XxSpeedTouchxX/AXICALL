@@ -80,9 +80,17 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <Link href="/" className="flex items-center gap-2 text-xl font-bold text-[var(--color-navy)]">
-          <Image src="/logo-icon.png" alt="" width={36} height={24} className="h-9 w-auto" priority />
-          Estimer Mon Auto
+        {/* The artwork already contains the wordmark, so the name is not
+            repeated as text beside it — the alt text carries it instead. */}
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo-full.png"
+            alt="Estimer Mon Auto — accueil"
+            width={300}
+            height={160}
+            className="h-10 w-auto sm:h-11"
+            priority
+          />
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">

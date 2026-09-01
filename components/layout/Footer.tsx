@@ -43,10 +43,15 @@ export function Footer() {
       <Reveal className="relative px-4 pt-16 pb-8">
         <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr]">
           <div>
-            <div className="mb-3 flex items-center gap-2">
-              <Image src="/logo-icon.png" alt="" width={36} height={24} className="h-8 w-auto" />
-              <p className="text-lg font-bold tracking-tight">{COMPANY.publicName}</p>
-            </div>
+            {/* Light variant: the standard logo's "Mon Auto" is near-black and
+                would all but vanish against this dark footer. */}
+            <Image
+              src="/logo-full-dark.png"
+              alt={COMPANY.publicName}
+              width={300}
+              height={160}
+              className="mb-3 h-10 w-auto"
+            />
             <p className="eyebrow mb-2">Estimez. Comparez. Vendez.</p>
             <p className="max-w-xs text-sm text-[var(--bone)]/60">Un service {COMPANY.legalName}</p>
           </div>
