@@ -20,6 +20,25 @@ export const CGU_ACCEPTANCE_TEXT =
 /** Maximum regulatory validity of the phone consent, in months. */
 export const CONSENT_DURATION_MONTHS = 12;
 
+/**
+ * Single source of truth for the publisher identity shown across the site
+ * (mentions légales, CGU, politique de confidentialité, footer, emails).
+ *
+ * These values must match the legally registered entity: French law (LCEN,
+ * art. 6-III) requires the site to identify its publisher accurately.
+ *
+ * SWITCHING TO THE SARL — when Axicall SARL is registered, replace the block
+ * below with the values from its Kbis. Nothing else in the codebase needs to
+ * change. A SARL is a new legal entity, so it gets its **own** SIRET: do not
+ * reuse the sole-trader number here.
+ *
+ *   legalName: "Axicall",
+ *   legalForm: "SARL au capital de [montant] €",
+ *   siret:     "[SIRET de la SARL]",
+ *   address:   "[adresse du siège social]",
+ *   ownerName: "[nom du gérant]",
+ *   vatNotice: "[n° TVA intracommunautaire]",
+ */
 export const COMPANY = {
   publicName: "Estimer Mon Auto",
   legalName: "Axicall",
@@ -31,8 +50,8 @@ export const COMPANY = {
   phone: "06 64 01 25 87",
   phoneHref: "tel:0664012587",
   email: "contact@axicall.fr",
-  /** Data-protection contact. A dedicated dpo@ address is planned once the
-   *  final domain is chosen — see "AXICALL - Mentions légales v1". */
+  /** Data-protection contact. Point this at a dpo@ address on the site's own
+   *  domain once the mailbox exists — see "AXICALL - Mentions légales v1". */
   dpoEmail: "contact@axicall.fr",
   hours: "Lun-Ven 9h-18h",
 } as const;
