@@ -21,7 +21,7 @@ export const CGU_ACCEPTANCE_TEXT =
 export const CONSENT_DURATION_MONTHS = 12;
 
 export const COMPANY = {
-  publicName: "MonEstimationAuto",
+  publicName: "Estimer Mon Auto",
   legalName: "Axicall",
   ownerName: "Zoheir Saoudi",
   legalForm: "Micro-entreprise",

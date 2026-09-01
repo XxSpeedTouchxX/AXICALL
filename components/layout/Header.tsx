@@ -55,7 +55,7 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
         <Link href="/" className="flex items-center gap-2 text-xl font-bold text-[var(--color-navy)]">
           <Image src="/logo-icon.png" alt="" width={36} height={24} className="h-9 w-auto" priority />
-          MonEstimationAuto
+          Estimer Mon Auto
         </Link>
         <nav className="hidden gap-6 md:flex">
           {NAV_LINKS.map((link) => (

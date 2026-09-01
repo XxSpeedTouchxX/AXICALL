@@ -3,8 +3,8 @@ import { LegalPage } from "@/components/layout/LegalPage";
 import { COMPANY } from "@/lib/company";
 
 export const metadata: Metadata = {
-  title: "Conditions générales d'utilisation | MonEstimationAuto",
-  description: "Conditions générales d'utilisation du simulateur d'estimation MonEstimationAuto.",
+  title: "Conditions générales d'utilisation | Estimer Mon Auto",
+  description: "Conditions générales d'utilisation du simulateur d'estimation Estimer Mon Auto.",
   robots: { index: false, follow: true },
 };
 

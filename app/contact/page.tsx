@@ -7,7 +7,7 @@ import { COMPANY } from "@/lib/company";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
-  title: "Contact | MonEstimationAuto",
+  title: "Contact | Estimer Mon Auto",
   description: "Contactez notre équipe pour toute question sur l'estimation ou la vente de votre véhicule.",
 };
 
@@ -70,7 +70,7 @@ export default function ContactPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            name: "MonEstimationAuto",
+            name: "Estimer Mon Auto",
             description: "Estimation gratuite et rachat de véhicules d'occasion.",
             areaServed: "FR",
             telephone: COMPANY.phone,

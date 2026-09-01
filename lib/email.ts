@@ -1,7 +1,7 @@
 import type { Lead } from "@/types/lead";
 import { COMPANY } from "./company";
 
-const FROM_ADDRESS = "MonEstimationAuto <onboarding@resend.dev>";
+const FROM_ADDRESS = "Estimer Mon Auto <onboarding@resend.dev>";
 
 interface SendEmailParams {
   to: string;

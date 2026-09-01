@@ -5,7 +5,7 @@ import { DataTable } from "@/components/content/DataTable";
 import { Callout, KeyPoints } from "@/components/content/Callout";
 
 export const metadata: Metadata = {
-  title: "Vendre sa voiture : les 5 solutions comparées en 2026 | MonEstimationAuto",
+  title: "Vendre sa voiture : les 5 solutions comparées en 2026 | Estimer Mon Auto",
   description:
     "Vente entre particuliers, reprise, rachat cash, mandataire ou dépôt-vente : comparatif du prix, du délai et de l'effort demandé pour chaque solution.",
   alternates: { canonical: "/vendre-sa-voiture" },

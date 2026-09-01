@@ -5,7 +5,7 @@ import { DataTable } from "@/components/content/DataTable";
 import { KeyPoints } from "@/components/content/Callout";
 
 export const metadata: Metadata = {
-  title: "Combien vaut ma voiture : les 9 critères qui font le prix | MonEstimationAuto",
+  title: "Combien vaut ma voiture : les 9 critères qui font le prix | Estimer Mon Auto",
   description:
     "Kilométrage, état, historique, motorisation, options, couleur, localisation : les 9 critères qui expliquent l'écart de prix entre deux véhicules identiques.",
   alternates: { canonical: "/combien-vaut-ma-voiture" },

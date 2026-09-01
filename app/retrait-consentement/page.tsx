@@ -4,7 +4,7 @@ import { LegalPage } from "@/components/layout/LegalPage";
 import { COMPANY } from "@/lib/company";
 
 export const metadata: Metadata = {
-  title: "Retrait de consentement | MonEstimationAuto",
+  title: "Retrait de consentement | Estimer Mon Auto",
   description:
     "Comment retirer à tout moment votre consentement à être contacté par téléphone par Axicall.",
   robots: { index: false, follow: true },

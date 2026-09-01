@@ -3,9 +3,9 @@ import { LegalPage } from "@/components/layout/LegalPage";
 import { COMPANY, CONSENT_DURATION_MONTHS } from "@/lib/company";
 
 export const metadata: Metadata = {
-  title: "Politique de confidentialité | MonEstimationAuto",
+  title: "Politique de confidentialité | Estimer Mon Auto",
   description:
-    "Comment MonEstimationAuto collecte, utilise et protège vos données personnelles.",
+    "Comment Estimer Mon Auto collecte, utilise et protège vos données personnelles.",
   robots: { index: false, follow: true },
 };
 

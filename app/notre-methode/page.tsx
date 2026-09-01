@@ -4,7 +4,7 @@ import { ArticlePage } from "@/components/content/ArticlePage";
 import { Callout } from "@/components/content/Callout";
 
 export const metadata: Metadata = {
-  title: "Notre méthode d'estimation, expliquée simplement | MonEstimationAuto",
+  title: "Notre méthode d'estimation, expliquée simplement | Estimer Mon Auto",
   description:
     "Ce que nous regardons pour estimer votre véhicule, ce que nous ne faisons pas, et pourquoi un rendez-vous reste nécessaire pour fixer un prix précis.",
   alternates: { canonical: "/notre-methode" },

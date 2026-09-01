@@ -1,8 +1,8 @@
-# MonEstimationAuto Implementation Plan
+# Estimer Mon Auto Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build a Next.js 16 (App Router) lead-generation website for Axicall/MonEstimationAuto, centered on a multi-step vehicle estimation simulator that captures and scores leads.
+**Goal:** Build a Next.js 16 (App Router) lead-generation website for Axicall/Estimer Mon Auto, centered on a multi-step vehicle estimation simulator that captures and scores leads.
 
 **Architecture:** App Router pages for marketing content + a client-driven multi-step form (`useEstimationForm`) that posts to a single `/api/leads` route. Pure, unit-tested functions in `lib/` (validation, scoring, storage) sit behind a `saveLead()` seam so storage can be swapped for Supabase later without touching callers. UI primitives in `components/ui/` are built once and reused everywhere.
 
@@ -2199,7 +2199,7 @@ import type { Metadata } from "next";
 import { StepForm } from "@/components/estimator/StepForm";
 
 export const metadata: Metadata = {
-  title: "Estimation gratuite de véhicule | MonEstimationAuto",
+  title: "Estimation gratuite de véhicule | Estimer Mon Auto",
   description:
     "Estimez gratuitement la valeur de votre véhicule en quelques minutes et recevez le rappel d'un expert.",
 };
@@ -2287,7 +2287,7 @@ import type { Metadata } from "next";
 import { ResultView } from "./ResultView";
 
 export const metadata: Metadata = {
-  title: "Estimation reçue | MonEstimationAuto",
+  title: "Estimation reçue | Estimer Mon Auto",
   robots: { index: false, follow: false },
 };
 
@@ -2347,7 +2347,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-[var(--color-gray-200)] bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
         <Link href="/" className="text-xl font-bold text-[var(--color-navy)]">
-          MonEstimationAuto
+          Estimer Mon Auto
         </Link>
         <nav className="hidden gap-6 md:flex">
           {NAV_LINKS.map((link) => (
@@ -2377,7 +2377,7 @@ export function Footer() {
     <footer className="bg-[var(--color-navy)] px-4 py-10 text-sm text-white">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:justify-between">
         <div>
-          <p className="font-semibold">MonEstimationAuto</p>
+          <p className="font-semibold">Estimer Mon Auto</p>
           <p className="text-white/70">Un service Axicall</p>
         </div>
         <div className="flex flex-col gap-1 text-white/70">
@@ -2662,11 +2662,11 @@ import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Testimonials } from "@/components/sections/Testimonials";
 
 export const metadata: Metadata = {
-  title: "Estimation voiture gratuite et rachat rapide | MonEstimationAuto",
+  title: "Estimation voiture gratuite et rachat rapide | Estimer Mon Auto",
   description:
     "Estimez gratuitement votre véhicule, recevez le rappel d'un expert et vendez votre voiture rapidement grâce à notre réseau de professionnels automobiles.",
   openGraph: {
-    title: "MonEstimationAuto — Estimation voiture gratuite",
+    title: "Estimer Mon Auto — Estimation voiture gratuite",
     description: "Découvrez la valeur réelle de votre véhicule en quelques minutes.",
     type: "website",
   },
@@ -2850,7 +2850,7 @@ import type { Metadata } from "next";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 
 export const metadata: Metadata = {
-  title: "Comment ça marche | MonEstimationAuto",
+  title: "Comment ça marche | Estimer Mon Auto",
   description: "Découvrez les 4 étapes pour estimer et vendre votre véhicule rapidement.",
 };
 
@@ -2873,7 +2873,7 @@ import type { Metadata } from "next";
 import { Testimonials } from "@/components/sections/Testimonials";
 
 export const metadata: Metadata = {
-  title: "Avis clients | MonEstimationAuto",
+  title: "Avis clients | Estimer Mon Auto",
   description: "Découvrez les témoignages de nos clients ayant estimé et vendu leur véhicule.",
 };
 
@@ -2894,7 +2894,7 @@ import type { Metadata } from "next";
 import { FAQAccordion } from "@/components/sections/FAQAccordion";
 
 export const metadata: Metadata = {
-  title: "FAQ | MonEstimationAuto",
+  title: "FAQ | Estimer Mon Auto",
   description: "Toutes les réponses à vos questions sur l'estimation et la vente de votre véhicule.",
 };
 
@@ -3060,7 +3060,7 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact | MonEstimationAuto",
+  title: "Contact | Estimer Mon Auto",
   description: "Contactez notre équipe pour toute question sur l'estimation ou la vente de votre véhicule.",
 };
 
@@ -3146,7 +3146,7 @@ export default function robots(): MetadataRoute.Robots {
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.monestimationauto.fr"),
   title: {
-    default: "MonEstimationAuto — Estimation et rachat de véhicule",
+    default: "Estimer Mon Auto — Estimation et rachat de véhicule",
     template: "%s",
   },
   description:
@@ -3172,7 +3172,7 @@ Add before the closing `</main>` in the returned JSX:
     __html: JSON.stringify({
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      name: "MonEstimationAuto",
+      name: "Estimer Mon Auto",
       description: "Estimation gratuite et rachat de véhicules d'occasion.",
       areaServed: "FR",
     }),

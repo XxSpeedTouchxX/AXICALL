@@ -3,7 +3,7 @@ import { COMPANY } from "@/lib/company";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "MonEstimationAuto — Estimation de véhicule gratuite";
+export const alt = "Estimer Mon Auto — Estimation de véhicule gratuite";
 
 /**
  * Social sharing image, generated at build time so there is no static asset to

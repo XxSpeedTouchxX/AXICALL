@@ -1,11 +1,11 @@
-# MonEstimationAuto — Site de génération de leads pour Axicall
+# Estimer Mon Auto — Site de génération de leads pour Axicall
 
 Date: 2026-08-07
 Statut: Validé par l'utilisateur, prêt pour planification d'implémentation
 
 ## Contexte et objectif
 
-Axicall est une agence dans l'automobile (estimation, rachat, mise en relation autour des véhicules d'occasion). Le site public s'appelle **MonEstimationAuto**. L'objectif unique du site est de transformer des visiteurs en **leads qualifiés** : un visiteur estime son véhicule via un simulateur multi-étapes, laisse ses coordonnées, et devient un lead scoré (chaud/tiède/froid) prêt à être rappelé par un commercial ou revendu à un professionnel.
+Axicall est une agence dans l'automobile (estimation, rachat, mise en relation autour des véhicules d'occasion). Le site public s'appelle **Estimer Mon Auto**. L'objectif unique du site est de transformer des visiteurs en **leads qualifiés** : un visiteur estime son véhicule via un simulateur multi-étapes, laisse ses coordonnées, et devient un lead scoré (chaud/tiède/froid) prêt à être rappelé par un commercial ou revendu à un professionnel.
 
 Ce n'est pas un site vitrine classique : chaque page est pensée comme une étape d'un tunnel de conversion.
 
@@ -17,7 +17,7 @@ Ce n'est pas un site vitrine classique : chaque page est pensée comme une étap
 
 ## Identité visuelle
 
-- Nom du site : **MonEstimationAuto** (Axicall = raison sociale, mentionnée en footer/mentions légales)
+- Nom du site : **Estimer Mon Auto** (Axicall = raison sociale, mentionnée en footer/mentions légales)
 - Couleurs : bleu nuit (fond header/sections fortes, CTA secondaires), blanc (fonds clairs, texte), gris (neutres/bordures), **orange** (accent — CTA principal "Estimer mon véhicule")
 - Style : automobile premium, sobre, inspirant confiance. Pas d'animations excessives, pas de blocs génériques.
 - Coordonnées de contact (téléphone, email, horaires, adresse) : **placeholders explicites** à remplacer par l'utilisateur avant mise en production (ex: `01 23 45 67 89`, `contact@monestimationauto.fr`).

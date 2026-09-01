@@ -15,9 +15,9 @@ import { COMPANY } from "@/lib/company";
 // navigation. Uncomment to keep it out of search results if traffic is 100%
 // paid: export const metadata: Metadata = { robots: { index: false, follow: false }, ... }
 export const metadata: Metadata = {
-  title: "Vendez votre voiture au juste prix, sans rien gérer | MonEstimationAuto",
+  title: "Vendez votre voiture au juste prix, sans rien gérer | Estimer Mon Auto",
   description:
-    "Estimation en 30 secondes, rappel sous 24h. MonEstimationAuto vous met en relation avec une agence dépôt-vente sélectionnée près de chez vous.",
+    "Estimation en 30 secondes, rappel sous 24h. Estimer Mon Auto vous met en relation avec une agence dépôt-vente sélectionnée près de chez vous.",
 };
 
 export default function LandingEstimationPage() {
@@ -50,7 +50,7 @@ export default function LandingEstimationPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            name: "MonEstimationAuto",
+            name: "Estimer Mon Auto",
             description: "Estimation gratuite et rachat de véhicules d'occasion.",
             areaServed: "FR",
             telephone: COMPANY.phone,

@@ -4,7 +4,7 @@ import { FAQAccordion } from "@/components/sections/FAQAccordion";
 import { FAQS } from "@/lib/faqs";
 
 export const metadata: Metadata = {
-  title: "FAQ | MonEstimationAuto",
+  title: "FAQ | Estimer Mon Auto",
   description: "Toutes les réponses à vos questions sur l'estimation et la vente de votre véhicule.",
   alternates: { canonical: "/faq" },
 };

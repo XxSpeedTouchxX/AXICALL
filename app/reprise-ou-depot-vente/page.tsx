@@ -5,7 +5,7 @@ import { DataTable } from "@/components/content/DataTable";
 import { Callout, KeyPoints } from "@/components/content/Callout";
 
 export const metadata: Metadata = {
-  title: "Reprise concession ou dépôt-vente : le vrai calcul | MonEstimationAuto",
+  title: "Reprise concession ou dépôt-vente : le vrai calcul | Estimer Mon Auto",
   description:
     "Prix, délai, conditions et contrôle sur le prix : le comparatif complet entre la reprise en concession et le dépôt-vente en agence.",
   alternates: { canonical: "/reprise-ou-depot-vente" },

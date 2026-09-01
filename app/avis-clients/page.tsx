@@ -4,7 +4,7 @@ import { Testimonials } from "@/components/sections/Testimonials";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/avis-clients" },
-  title: "Avis clients | MonEstimationAuto",
+  title: "Avis clients | Estimer Mon Auto",
   description: "Découvrez les témoignages de nos clients ayant estimé et vendu leur véhicule.",
 };
 

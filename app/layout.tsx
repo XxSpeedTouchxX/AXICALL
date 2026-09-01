@@ -28,7 +28,7 @@ const archivo = Archivo({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "MonEstimationAuto — Estimation et rachat de véhicule",
+    default: "Estimer Mon Auto — Estimation et rachat de véhicule",
     template: "%s",
   },
   description:

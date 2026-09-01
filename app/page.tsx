@@ -8,11 +8,11 @@ import { COMPANY } from "@/lib/company";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
-  title: "Estimation voiture gratuite et rachat rapide | MonEstimationAuto",
+  title: "Estimation voiture gratuite et rachat rapide | Estimer Mon Auto",
   description:
     "Estimez gratuitement votre véhicule, recevez le rappel d'un expert et vendez votre voiture rapidement grâce à notre réseau de professionnels automobiles.",
   openGraph: {
-    title: "MonEstimationAuto — Estimation voiture gratuite",
+    title: "Estimer Mon Auto — Estimation voiture gratuite",
     description: "Découvrez la valeur réelle de votre véhicule en quelques minutes.",
     type: "website",
   },
@@ -32,7 +32,7 @@ export default function HomePage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            name: "MonEstimationAuto",
+            name: "Estimer Mon Auto",
             description: "Estimation gratuite et rachat de véhicules d'occasion.",
             areaServed: "FR",
             telephone: COMPANY.phone,

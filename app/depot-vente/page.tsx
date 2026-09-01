@@ -4,7 +4,7 @@ import { ArticlePage } from "@/components/content/ArticlePage";
 import { Callout, KeyPoints } from "@/components/content/Callout";
 
 export const metadata: Metadata = {
-  title: "Le dépôt-vente automobile : comment ça marche vraiment | MonEstimationAuto",
+  title: "Le dépôt-vente automobile : comment ça marche vraiment | Estimer Mon Auto",
   description:
     "Étapes, commission, délai, responsabilité pendant la mise en vente : le fonctionnement réel du dépôt-vente automobile, expliqué sans promesse creuse.",
   alternates: { canonical: "/depot-vente" },

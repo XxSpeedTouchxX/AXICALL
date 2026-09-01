@@ -4,8 +4,8 @@ import { LegalPage } from "@/components/layout/LegalPage";
 import { COMPANY } from "@/lib/company";
 
 export const metadata: Metadata = {
-  title: "Mentions légales | MonEstimationAuto",
-  description: "Mentions légales du site MonEstimationAuto, édité par Axicall.",
+  title: "Mentions légales | Estimer Mon Auto",
+  description: "Mentions légales du site Estimer Mon Auto, édité par Axicall.",
   robots: { index: false, follow: true },
 };
 
