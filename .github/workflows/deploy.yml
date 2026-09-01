@@ -1,0 +1,47 @@
+name: Build for o2switch
+
+# o2switch cannot build this site itself: its CloudLinux image ships a glibc
+# older than the one Next.js's SWC binary needs, and the WebAssembly fallback
+# exceeds the host's 4 GB address-space limit. So the build runs here, on a
+# current Linux runner, and the result is published to the `deploy` branch.
+# The server only ever pulls that branch — it never compiles anything.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-publish:
+    name: Build and publish the deploy branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Publish the build to the deploy branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # The build cache is large and useless to the server.
+          rm -rf .next/cache
+
+          git checkout -B deploy
+          # .next is gitignored for normal development; force-add it here so the
+          # server gets a ready-to-serve build.
+          git add -f .next
+          git add -A
+          git commit -m "Build from ${GITHUB_SHA::7}"
+          git push -f origin deploy
