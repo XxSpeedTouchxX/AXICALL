@@ -1,0 +1,13 @@
+{
+  "sorted_middleware": [],
+  "middleware": {},
+  "instrumentation": {
+    "files": [
+      "server/edge/chunks/[root-of-the-server]__1q32cfm._.js",
+      "server/edge/chunks/_0fevuds._.js",
+      "server/edge/chunks/turbopack-node_modules_next_dist_esm_build_templates_edge-wrapper_0fnnj23.js"
+    ],
+    "name": "instrumentation"
+  },
+  "functions": {}
+}

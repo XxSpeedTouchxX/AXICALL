@@ -1,0 +1,228 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "app",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/:path*",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self' data:; connect-src 'self' https://geo.api.gouv.fr https://*.sentry.io https://*.ingest.us.sentry.io; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+        }
+      ],
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
+    }
+  ],
+  "onMatchHeaders": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/admin",
+      "regex": "^/admin(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin(?:/)?$"
+    },
+    {
+      "page": "/api/leads",
+      "regex": "^/api/leads(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/leads(?:/)?$"
+    },
+    {
+      "page": "/avis-clients",
+      "regex": "^/avis\\-clients(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/avis\\-clients(?:/)?$"
+    },
+    {
+      "page": "/cgu",
+      "regex": "^/cgu(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cgu(?:/)?$"
+    },
+    {
+      "page": "/combien-vaut-ma-voiture",
+      "regex": "^/combien\\-vaut\\-ma\\-voiture(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/combien\\-vaut\\-ma\\-voiture(?:/)?$"
+    },
+    {
+      "page": "/comment-ca-marche",
+      "regex": "^/comment\\-ca\\-marche(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/comment\\-ca\\-marche(?:/)?$"
+    },
+    {
+      "page": "/contact",
+      "regex": "^/contact(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/contact(?:/)?$"
+    },
+    {
+      "page": "/depot-vente",
+      "regex": "^/depot\\-vente(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/depot\\-vente(?:/)?$"
+    },
+    {
+      "page": "/estimation",
+      "regex": "^/estimation(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/estimation(?:/)?$"
+    },
+    {
+      "page": "/estimation/merci",
+      "regex": "^/estimation/merci(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/estimation/merci(?:/)?$"
+    },
+    {
+      "page": "/faq",
+      "regex": "^/faq(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/faq(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/icon.png",
+      "regex": "^/icon\\.png(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/icon\\.png(?:/)?$"
+    },
+    {
+      "page": "/landing/estimation",
+      "regex": "^/landing/estimation(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/landing/estimation(?:/)?$"
+    },
+    {
+      "page": "/mentions-legales",
+      "regex": "^/mentions\\-legales(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/mentions\\-legales(?:/)?$"
+    },
+    {
+      "page": "/notre-methode",
+      "regex": "^/notre\\-methode(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/notre\\-methode(?:/)?$"
+    },
+    {
+      "page": "/opengraph-image",
+      "regex": "^/opengraph\\-image(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/opengraph\\-image(?:/)?$"
+    },
+    {
+      "page": "/politique-de-confidentialite",
+      "regex": "^/politique\\-de\\-confidentialite(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/politique\\-de\\-confidentialite(?:/)?$"
+    },
+    {
+      "page": "/reprise-ou-depot-vente",
+      "regex": "^/reprise\\-ou\\-depot\\-vente(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/reprise\\-ou\\-depot\\-vente(?:/)?$"
+    },
+    {
+      "page": "/retrait-consentement",
+      "regex": "^/retrait\\-consentement(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/retrait\\-consentement(?:/)?$"
+    },
+    {
+      "page": "/robots.txt",
+      "regex": "^/robots\\.txt(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/robots\\.txt(?:/)?$"
+    },
+    {
+      "page": "/sitemap.xml",
+      "regex": "^/sitemap\\.xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sitemap\\.xml(?:/)?$"
+    },
+    {
+      "page": "/vendre-sa-voiture",
+      "regex": "^/vendre\\-sa\\-voiture(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/vendre\\-sa\\-voiture(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

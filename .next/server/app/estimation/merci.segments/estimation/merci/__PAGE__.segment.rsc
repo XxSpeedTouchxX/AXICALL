@@ -1,0 +1,22 @@
+1:"$Sreact.fragment"
+2:I[42533,["/_next/static/chunks/3nig3u-gakgru.js","/_next/static/chunks/0r448y2jctkjf.js","/_next/static/chunks/3kvce5s4eater.js","/_next/static/chunks/0zb3nx90o98iy.js"],"ResultView"]
+3:I[97367,["/_next/static/chunks/1vng8-t8vlash.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+8:I[97367,["/_next/static/chunks/1vng8-t8vlash.js"],"ViewportBoundary"]
+9:I[97367,["/_next/static/chunks/1vng8-t8vlash.js"],"MetadataBoundary"]
+a:I[27201,["/_next/static/chunks/1vng8-t8vlash.js"],"IconMark"]
+c:I[39756,["/_next/static/chunks/1vng8-t8vlash.js"],"default"]
+d:I[37457,["/_next/static/chunks/1vng8-t8vlash.js"],"default"]
+7:X
+f:X
+f:C
+0:{"buildId":"HYa54XcVdYJE7YP1E-8Jh","data":[{"rsc":["$","$1","c",{"children":[["$","main",null,{"className":"bg-[var(--paper)] px-4 py-16","children":["$","$L2",null,{}]}],[["$","script","script-0",{"src":"/_next/static/chunks/0zb3nx90o98iy.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$L8",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L9",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Estimation reçue | Estimer Mon Auto"}],["$","meta","1",{"name":"description","content":"Estimation gratuite, rachat et mise en relation pour vendre votre véhicule d'occasion rapidement."}],["$","meta","2",{"name":"keywords","content":"estimation voiture,estimation véhicule,rachat voiture,vendre voiture rapidement,reprise automobile"}],["$","meta","3",{"name":"robots","content":"noindex, nofollow"}],["$","meta","4",{"property":"og:title","content":"Estimation reçue | Estimer Mon Auto"}],["$","meta","5",{"property":"og:description","content":"Estimation gratuite, rachat et mise en relation pour vendre votre véhicule d'occasion rapidement."}],["$","meta","6",{"property":"og:image","content":"https://estimer-mon-auto.fr/opengraph-image?1e2c1fe85e2dfd11"}],["$","meta","7",{"property":"og:image:type","content":"image/png"}],["$","meta","8",{"property":"og:image:width","content":"1200"}],["$","meta","9",{"property":"og:image:height","content":"630"}],["$","meta","10",{"property":"og:image:alt","content":"Estimer Mon Auto — Estimation de véhicule gratuite"}],["$","meta","11",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","12",{"name":"twitter:title","content":"Estimation reçue | Estimer Mon Auto"}],["$","meta","13",{"name":"twitter:description","content":"Estimation gratuite, rachat et mise en relation pour vendre votre véhicule d'occasion rapidement."}],["$","meta","14",{"name":"twitter:image","content":"https://estimer-mon-auto.fr/opengraph-image?1e2c1fe85e2dfd11"}],["$","meta","15",{"name":"twitter:image:alt","content":"Estimer Mon Auto — Estimation de véhicule gratuite"}],["$","meta","16",{"name":"twitter:image:type","content":"image/png"}],["$","meta","17",{"name":"twitter:image:width","content":"1200"}],["$","meta","18",{"name":"twitter:image:height","content":"630"}],["$","link","19",{"rel":"icon","href":"/favicon.ico?favicon.2vob68tjqpejf.ico","sizes":"256x256","type":"image/x-icon"}],["$","link","20",{"rel":"icon","href":"/icon.png?icon.2__fgsw44og95.png","sizes":"512x512","type":"image/png"}],["$","$La","21",{}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"isPartial":"$@b","staleTime":"$7","varyParams":null},{"rsc":["$","$1","c",{"children":[null,["$","$Lc",null,{"parallelRouterKey":"children","template":["$","$Ld",null,{}]}]]}],"isPartial":"$@e","staleTime":"$7","varyParams":"$f"},{"rsc":["$","$1","c",{"children":[null,["$","$Lc",null,{"parallelRouterKey":"children","template":["$","$Ld",null,{}]}]]}],"isPartial":"$@10","staleTime":"$7","varyParams":"$f"}],"isUpgradeableISRFallback":false,"a":"$@11","rootVaryParams":null,"needsRuntimeRequest":"$@12"}
+5:null
+12:true
+7:300
+7:C
+11:0
+b:"$undefined"
+e:"$undefined"
+10:"$undefined"
+6:"$undefined"

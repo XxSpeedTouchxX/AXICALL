@@ -1,0 +1,3 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["chunks/[root-of-the-server]__1q32cfm._.js",78500,(e,n,r)=>{n.exports=e.x("node:async_hooks",()=>require("node:async_hooks"))},51615,(e,n,r)=>{n.exports=e.x("node:buffer",()=>require("node:buffer"))},87769,(e,n,r)=>{n.exports=e.x("node:events",()=>require("node:events"))},59858,(e,n,r)=>{self._ENTRIES||={};let t=Promise.resolve().then(()=>e.i(10977));t.catch(()=>{}),self._ENTRIES.middleware_instrumentation=new Proxy(t,{get(e,n){if("then"===n)return(n,r)=>e.then(n,r);let r=(...r)=>e.then(e=>(0,e[n])(...r));return r.then=(r,t)=>e.then(e=>e[n]).then(r,t),r}})}]);
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__1q32cfm._.js.map

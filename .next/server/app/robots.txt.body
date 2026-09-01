@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /estimation/merci
+
+Sitemap: https://estimer-mon-auto.fr/sitemap.xml
