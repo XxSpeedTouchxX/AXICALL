@@ -17,6 +17,7 @@ import { Step2Condition } from "./Step2Condition";
 import { Step3Situation } from "./Step3Situation";
 import { Step4Contact } from "./Step4Contact";
 import { Button } from "@/components/ui/Button";
+import { HoneypotField } from "@/components/ui/HoneypotField";
 
 /** Human-readable names so validation errors can say what is actually missing. */
 const FIELD_LABELS: Record<string, string> = {
@@ -75,6 +76,7 @@ export function StepForm() {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [direction, setDirection] = useState(1);
+  const [honeypot, setHoneypot] = useState("");
 
   // Single source of truth per step: its validation schema, the data it
   // validates, and the element it renders — instead of three separate
@@ -135,7 +137,7 @@ export function StepForm() {
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ formType: "estimation", ...form.data }),
+        body: JSON.stringify({ formType: "estimation", ...form.data, societeWeb: honeypot }),
       });
       if (!res.ok) throw new Error("submit failed");
       const body = await res.json();
@@ -154,7 +156,8 @@ export function StepForm() {
 
   return (
     <div className="mx-auto w-full max-w-2xl">
-      <div className="border border-[var(--line)] bg-white shadow-xl">
+      <div className="relative border border-[var(--line)] bg-white shadow-xl">
+        <HoneypotField value={honeypot} onChange={setHoneypot} />
         <div className="border-b border-[var(--line)] bg-[var(--paper)]/50 px-6 py-6 sm:px-8">
           <StepIndicator step={form.step} labels={STEP_LABELS} />
         </div>

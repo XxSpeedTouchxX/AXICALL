@@ -3,12 +3,11 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
-import { saveLead, getAllLeads } from "./leads";
-import type { EstimationLead } from "@/types/lead";
+import { saveLead, getAllLeads, type NewEstimationLead } from "./leads";
 
 const DATA_FILE = path.join(process.cwd(), "data", "leads.json");
 
-function sampleLead(): Omit<EstimationLead, "id" | "createdAt" | "statut"> {
+function sampleLead(): NewEstimationLead {
   return {
     type: "estimation",
     vehicule: {
@@ -27,9 +26,13 @@ function sampleLead(): Omit<EstimationLead, "id" | "createdAt" | "statut"> {
     },
     score: 75,
     urgence: "chaud",
-    // dateExpiration is a placeholder here — saveLead() overwrites it with a
-    // real value computed from its own createdAt at save time.
-    consentement: { texte: "J'accepte d'être contacté.", dateExpiration: "" },
+    // dateExpiration and horodatage are not supplied: saveLead() derives both
+    // from its own createdAt at save time.
+    consentement: {
+      texte: "J'accepte d'être contacté.",
+      adresseIp: "203.0.113.10",
+      cguAcceptees: true,
+    },
   };
 }
 

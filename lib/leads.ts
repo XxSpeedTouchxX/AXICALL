@@ -1,9 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { ContactLead, EstimationLead, Lead } from "@/types/lead";
+import type { ContactLead, EstimationLead, Lead, LeadStatus } from "@/types/lead";
 
-type NewEstimationLead = Omit<EstimationLead, "id" | "createdAt" | "statut" | "consentement"> & {
-  consentement: { texte: string };
+export type NewEstimationLead = Omit<
+  EstimationLead,
+  "id" | "createdAt" | "statut" | "consentement"
+> & {
+  // dateExpiration and horodatage are derived at save time, not supplied.
+  consentement: { texte: string; adresseIp: string | null; cguAcceptees: boolean };
 };
 
 type NewLead = NewEstimationLead | Omit<ContactLead, "id" | "createdAt" | "statut">;
@@ -49,6 +53,9 @@ export async function saveLead(lead: NewLead): Promise<Lead> {
     fullLead.consentement = {
       texte: fullLead.consentement.texte,
       dateExpiration: dateExpiration.toISOString(),
+      horodatage: createdAt.toISOString(),
+      adresseIp: fullLead.consentement.adresseIp,
+      cguAcceptees: fullLead.consentement.cguAcceptees,
     };
   }
 
@@ -61,4 +68,14 @@ export async function saveLead(lead: NewLead): Promise<Lead> {
 
 export async function getAllLeads(): Promise<Lead[]> {
   return readLeads();
+}
+
+/** Updates one lead's pipeline status. Returns false when the id is unknown. */
+export async function updateLeadStatus(id: string, statut: LeadStatus): Promise<boolean> {
+  const leads = readLeads();
+  const lead = leads.find((l) => l.id === id);
+  if (!lead) return false;
+  lead.statut = statut;
+  writeLeads(leads);
+  return true;
 }

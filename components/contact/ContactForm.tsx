@@ -5,9 +5,11 @@ import { CheckCircle2, User, Mail, MessageSquare } from "lucide-react";
 import { Input } from "@/components/ui/Input";
 import { PhoneField } from "@/components/ui/PhoneField";
 import { Button } from "@/components/ui/Button";
+import { HoneypotField } from "@/components/ui/HoneypotField";
 
 export function ContactForm() {
   const [values, setValues] = useState({ nom: "", email: "", telephone: "", message: "" });
+  const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   async function handleSubmit(e: React.FormEvent) {
@@ -17,7 +19,7 @@ export function ContactForm() {
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ formType: "contact", ...values }),
+        body: JSON.stringify({ formType: "contact", ...values, societeWeb: honeypot }),
       });
       if (!res.ok) throw new Error("failed");
       setStatus("sent");
@@ -39,8 +41,9 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-5 border border-[var(--color-gray-200)] bg-white p-6 shadow-sm sm:p-8"
+      className="relative flex flex-col gap-5 border border-[var(--color-gray-200)] bg-white p-6 shadow-sm sm:p-8"
     >
+      <HoneypotField value={honeypot} onChange={setHoneypot} />
       <Input
         label="Nom"
         name="nom"

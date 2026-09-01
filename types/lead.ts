@@ -29,12 +29,20 @@ export interface EstimationLead extends LeadBase {
   score: number;
   urgence: Urgence;
   /**
-   * Proof of consent for phone prospecting (AXICALL_Pilotage_Consentements.pdf):
-   * verbatim text agreed to, and its 12-month expiration computed at save time.
+   * Proof of consent for phone prospecting. "AXICALL - Politique de
+   * confidentialité v1" requires the timestamp, the IP address and the exact
+   * wording displayed to be retained for 3 years (décret n° 2026-662), so the
+   * consent can be evidenced in an inspection.
    */
   consentement: {
     texte: string;
     dateExpiration: string;
+    /** When consent was given — distinct from createdAt, which may drift if a lead is edited. */
+    horodatage: string;
+    /** Caller IP, from the proxy headers. Null when it cannot be determined. */
+    adresseIp: string | null;
+    /** Whether the terms checkbox was also ticked (a separate, required consent). */
+    cguAcceptees: boolean;
   };
 }
 

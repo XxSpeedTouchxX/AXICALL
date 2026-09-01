@@ -12,7 +12,13 @@ const estimationLead: EstimationLead = {
   prospect: { nom: "Dupont", prenom: "Marie", telephone: "0612345678", email: "marie@example.com", ville: "Lyon" },
   score: 85,
   urgence: "chaud",
-  consentement: { texte: "...", dateExpiration: new Date().toISOString() },
+  consentement: {
+    texte: "...",
+    dateExpiration: new Date().toISOString(),
+    horodatage: new Date().toISOString(),
+    adresseIp: "203.0.113.10",
+    cguAcceptees: true,
+  },
 };
 
 const contactLead: ContactLead = {
